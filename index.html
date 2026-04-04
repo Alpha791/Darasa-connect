@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darasa Connect – WINNERS CLASS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1B5E3B;
+  --green-light: #2D8653;
+  --green-pale: #E8F5EE;
+  --red: #C0392B;
+  --red-pale: #FDEDEC;
+  --amber: #D4930A;
+  --amber-pale: #FEF9EC;
+  --sky: #1A6FA8;
+  --sky-pale: #EAF4FB;
+  --cream: #FEFCF7;
+  --sand: #F5F0E8;
+  --text: #1C1C1E;
+  --text-2: #4A4A4F;
+  --text-3: #8E8E93;
+  --border: #E5E0D8;
+  --white: #FFFFFF;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font: 'Outfit', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+/* ── VIEWS ── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ══════════════════════════════════════
+   LOGIN SCREEN
+══════════════════════════════════════ */
+#view-login {
+  min-height: 100vh;
+  display: none;
+  background: linear-gradient(135deg, #1B5E3B 0%, #0D3B24 50%, #1A1A2E 100%);
+  position: relative;
+  overflow: hidden;
+}
+#view-login.active { display: flex; align-items: center; justify-content: center; }
+#view-login::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(212,147,10,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(192,57,43,0.12) 0%, transparent 50%);
+}
+.login-pattern {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.login-card {
+  position: relative; z-index: 2;
+  background: rgba(255,255,255,0.97);
+  border-radius: 24px;
+  padding: 48px 44px;
+  width: 100%; max-width: 460px;
+  margin: 20px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  animation: loginPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes loginPop {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.login-logo {
+  text-align: center; margin-bottom: 32px;
+}
+.login-logo .emblem {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  border-radius: 20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 32px; margin-bottom: 12px;
+  box-shadow: 0 8px 24px rgba(27,94,59,0.3);
+}
+.login-logo h1 {
+  font-family: var(--font); font-size: 26px; font-weight: 800; color: var(--green);
+  letter-spacing: -0.5px;
+}
+.login-logo p { color: var(--text-3); font-size: 13px; margin-top: 4px; }
+
+.login-tabs {
+  display: flex; background: var(--sand); border-radius: 10px; padding: 4px;
+  margin-bottom: 28px;
+}
+.login-tab {
+  flex: 1; padding: 10px; border: none; background: none; border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer;
+  color: var(--text-3); transition: all 0.2s;
+}
+.login-tab.active {
+  background: var(--white); color: var(--green);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 700; color: var(--text-2);
+  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 7px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 13px 16px;
+  border: 2px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 15px; color: var(--text);
+  background: var(--white); transition: border-color 0.2s;
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--green);
+}
+.form-group textarea { resize: vertical; min-height: 90px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 24px; border: none; border-radius: var(--radius-sm);
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--green); color: #fff;
+  box-shadow: 0 4px 16px rgba(27,94,59,0.3);
+}
+.btn-primary:hover { background: var(--green-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(27,94,59,0.4); }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { background: #E74C3C; }
+.btn-amber { background: var(--amber); color: #fff; }
+.btn-amber:hover { background: #E8A20D; }
+.btn-sky { background: var(--sky); color: #fff; }
+.btn-ghost { background: transparent; color: var(--text-2); border: 2px solid var(--border); }
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+.btn-full { width: 100%; }
+.btn-sm { padding: 8px 16px; font-size: 13px; }
+
+.login-error {
+  background: var(--red-pale); color: var(--red);
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  font-size: 13px; margin-bottom: 16px; display: none;
+  border-left: 3px solid var(--red);
+}
+
+.learner-select-wrap { position: relative; }
+.learner-select-wrap::after {
+  content: '▾'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--text-3); pointer-events: none;
+}
+.learner-select-wrap select { appearance: none; }
+
+/* ══════════════════════════════════════
+   MAIN APP SHELL
+══════════════════════════════════════ */
+#view-app { display: none; min-height: 100vh; flex-direction: column; }
+#view-app.active { display: flex; }
+
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+.topbar-brand {
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+}
+.topbar-brand .mini-logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.topbar-brand h2 {
+  font-family: var(--font); font-size: 18px; font-weight: 800; color: var(--green);
+  letter-spacing: -0.3px;
+}
+.topbar-brand span { font-size: 11px; color: var(--text-3); display: block; margin-top: -2px; }
+
+.topbar-user {
+  display: flex; align-items: center; gap: 12px;
+}
+.user-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--sand); padding: 6px 14px 6px 8px;
+  border-radius: 30px;
+}
+.user-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff;
+}
+.avatar-teacher { background: linear-gradient(135deg, var(--green), var(--green-light)); }
+.avatar-learner { background: linear-gradient(135deg, var(--sky), #2980B9); }
+.user-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.user-role { font-size: 11px; color: var(--text-3); }
+
+.btn-logout { padding: 8px 14px; font-size: 13px; }
+
+.app-body {
+  display: flex; flex: 1;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 240px; background: var(--white); border-right: 1px solid var(--border);
+  padding: 24px 16px; display: flex; flex-direction: column; gap: 4px;
+  flex-shrink: 0; min-height: calc(100vh - 64px);
+  position: sticky; top: 64px; align-self: flex-start;
+}
+.sidebar-section-label {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text-3); padding: 12px 10px 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 12px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.15s; font-size: 14px; font-weight: 600;
+  color: var(--text-2); border: none; background: none; width: 100%; text-align: left;
+}
+.nav-item:hover { background: var(--sand); color: var(--text); }
+.nav-item.active { background: var(--green-pale); color: var(--green); }
+.nav-item .nav-icon { font-size: 17px; width: 22px; text-align: center; }
+.nav-badge {
+  margin-left: auto; background: var(--red); color: #fff;
+  font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 20px;
+}
+.nav-badge.green { background: var(--green); }
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  flex: 1; padding: 28px; overflow-x: hidden;
+  max-width: 1100px;
+}
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; animation: pageIn 0.2s ease; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.page-header {
+  margin-bottom: 28px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+}
+.page-header h1 {
+  font-family: var(--font); font-size: 26px; font-weight: 800; color: var(--text);
+  letter-spacing: -0.5px;
+}
+.page-header p { color: var(--text-3); font-size: 14px; margin-top: 3px; }
+
+/* ── STAT CARDS ── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--white); border-radius: var(--radius); padding: 22px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 16px;
+}
+.stat-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+  flex-shrink: 0;
+}
+.stat-icon.green { background: var(--green-pale); }
+.stat-icon.red { background: var(--red-pale); }
+.stat-icon.amber { background: var(--amber-pale); }
+.stat-icon.sky { background: var(--sky-pale); }
+.stat-value { font-family: var(--font); font-size: 28px; font-weight: 800; color: var(--text); }
+.stat-label { font-size: 12px; color: var(--text-3); font-weight: 600; margin-top: 2px; }
+
+/* ── SUBJECT CHIPS ── */
+.subject-bar {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
+}
+.subject-chip {
+  padding: 7px 16px; border-radius: 30px; font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; border: 2px solid var(--border);
+  background: var(--white); color: var(--text-2);
+  display: flex; align-items: center; gap: 6px;
+}
+.subject-chip:hover { border-color: var(--green); color: var(--green); }
+.subject-chip.active { border-color: var(--green); background: var(--green); color: #fff; }
+.subject-chip .chip-emoji { font-size: 15px; }
+
+/* ── HOMEWORK CARDS ── */
+.hw-grid { display: grid; gap: 16px; }
+.hw-card {
+  background: var(--white); border-radius: var(--radius); padding: 22px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.hw-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.hw-card-title { font-family: var(--font); font-size: 17px; font-weight: 700; color: var(--text); }
+.hw-card-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.hw-card-body { color: var(--text-2); font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+.hw-card-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;
+}
+.tag-subject { background: var(--green-pale); color: var(--green); }
+.tag-date { background: var(--sand); color: var(--text-3); }
+.tag-due { background: var(--amber-pale); color: var(--amber); }
+.tag-submitted { background: var(--sky-pale); color: var(--sky); }
+.tag-pending { background: var(--red-pale); color: var(--red); }
+.tag-marked { background: var(--green-pale); color: var(--green); }
+.tag-questions { background: var(--sand); color: var(--text-2); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 60px 24px; color: var(--text-3);
+}
+.empty-state .icon { font-size: 52px; margin-bottom: 16px; }
+.empty-state h3 { font-family: var(--font); font-size: 18px; color: var(--text-2); margin-bottom: 6px; }
+.empty-state p { font-size: 14px; max-width: 360px; margin: 0 auto; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 500;
+  align-items: center; justify-content: center; padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--white); border-radius: 20px;
+  max-width: 640px; width: 100%; max-height: 90vh;
+  overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.modal-wide { max-width: 780px; }
+
+.modal-header {
+  padding: 24px 28px 0; display: flex; align-items: center; justify-content: space-between;
+}
+.modal-header h2 { font-family: var(--font); font-size: 20px; font-weight: 800; color: var(--text); }
+.modal-close {
+  width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--sand);
+  cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); transition: background 0.2s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-body { padding: 20px 28px 28px; }
+
+/* ── POST HOMEWORK FORM ── */
+.question-builder { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.question-item {
+  background: var(--sand); border-radius: var(--radius-sm); padding: 16px;
+  border: 1px solid var(--border); position: relative;
+}
+.question-item .q-num {
+  font-family: var(--font); font-size: 12px; font-weight: 800; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+}
+.question-item textarea {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 6px;
+  font-family: var(--font-body); font-size: 14px; color: var(--text); resize: vertical;
+  min-height: 70px; background: var(--white); outline: none;
+}
+.question-item textarea:focus { border-color: var(--green); }
+.question-item .remove-q {
+  position: absolute; top: 10px; right: 10px;
+  width: 26px; height: 26px; border-radius: 50%; border: none;
+  background: var(--red-pale); color: var(--red); cursor: pointer;
+  font-size: 14px; display: flex; align-items: center; justify-content: center;
+}
+
+/* ── ANSWER FORM ── */
+.answer-block {
+  background: var(--white); border-radius: var(--radius); padding: 20px;
+  border: 1px solid var(--border); margin-bottom: 14px;
+}
+.answer-block .q-text {
+  font-weight: 700; color: var(--text); margin-bottom: 12px; font-size: 15px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.answer-block .q-num-label {
+  font-size: 11px; font-weight: 800; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+}
+.answer-block textarea {
+  width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px;
+  font-family: var(--font-body); font-size: 14px; resize: vertical; min-height: 100px;
+  outline: none; transition: border-color 0.2s; background: var(--sand);
+}
+.answer-block textarea:focus { border-color: var(--green); background: var(--white); }
+
+/* ── MARKING ── */
+.submission-answer-block {
+  background: var(--white); border-radius: var(--radius); padding: 20px;
+  border: 1px solid var(--border); margin-bottom: 14px;
+}
+.learner-answer-text {
+  background: var(--sky-pale); border-radius: 8px; padding: 12px;
+  font-size: 14px; color: var(--text); margin: 10px 0; font-style: italic;
+  border-left: 3px solid var(--sky);
+}
+.mark-buttons { display: flex; gap: 10px; margin-top: 12px; }
+.mark-btn {
+  flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; background: var(--white);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.mark-btn.correct { border-color: var(--green-light); color: var(--green); }
+.mark-btn.correct.selected, .mark-btn.correct:hover { background: var(--green-pale); }
+.mark-btn.wrong { border-color: var(--red); color: var(--red); }
+.mark-btn.wrong.selected, .mark-btn.wrong:hover { background: var(--red-pale); }
+.mark-btn.partial { border-color: var(--amber); color: var(--amber); }
+.mark-btn.partial.selected, .mark-btn.partial:hover { background: var(--amber-pale); }
+
+/* ── LEARNER SUBMISSIONS LIST ── */
+.submissions-list { display: flex; flex-direction: column; gap: 12px; }
+.submission-row {
+  background: var(--white); border-radius: var(--radius); padding: 18px 22px;
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.submission-row .learner-name { font-weight: 700; font-size: 15px; color: var(--text); }
+.submission-row .sub-meta { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+/* ── MARKS VIEW (LEARNER) ── */
+.marks-card {
+  background: var(--white); border-radius: var(--radius); padding: 22px;
+  border: 1px solid var(--border); margin-bottom: 14px;
+}
+.score-bar-wrap { background: var(--sand); border-radius: 10px; height: 12px; margin: 10px 0; overflow: hidden; }
+.score-bar { height: 100%; border-radius: 10px; background: var(--green); transition: width 1s ease; }
+.score-bar.warn { background: var(--amber); }
+.score-bar.danger { background: var(--red); }
+
+.answer-review-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px;
+}
+.answer-review-item:last-child { border-bottom: none; }
+.mark-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+/* ── LONGHORN BOOKS SECTION ── */
+.books-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px;
+}
+.book-card {
+  background: var(--white); border-radius: var(--radius); padding: 18px;
+  border: 1px solid var(--border); text-align: center; transition: all 0.2s;
+}
+.book-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.book-spine { width: 60px; height: 80px; border-radius: 6px; margin: 0 auto 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.book-title { font-family: var(--font); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.book-sub { font-size: 12px; color: var(--text-3); margin-bottom: 12px; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* ── NOTICE ── */
+.notice {
+  padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 16px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.notice.info { background: var(--sky-pale); color: var(--sky); border-left: 3px solid var(--sky); }
+.notice.warn { background: var(--amber-pale); color: var(--amber); border-left: 3px solid var(--amber); }
+.notice.success { background: var(--green-pale); color: var(--green); border-left: 3px solid var(--green); }
+
+/* ── PROGRESS TABLE ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  background: var(--sand); padding: 12px 16px; text-align: left;
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px;
+  color: var(--text-3); border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 13px 16px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text-2);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--sand); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main-content { padding: 16px; }
+  .topbar { padding: 0 16px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .modal { margin: 0; border-radius: 20px 20px 0 0; max-height: 92vh; align-self: flex-end; }
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .login-card { padding: 32px 24px; }
+  .page-header { flex-direction: column; }
+}
+
+/* Mobile nav */
+.mobile-nav {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white); border-top: 1px solid var(--border);
+  z-index: 200; padding: 8px 16px 20px;
+  flex-wrap: nowrap; overflow-x: auto; gap: 2px;
+}
+@media (max-width: 768px) { .mobile-nav { display: flex; } }
+.mobile-nav .nav-item { flex-direction: column; gap: 3px; font-size: 10px; padding: 6px 10px; min-width: 60px; }
+.mobile-nav .nav-item .nav-icon { font-size: 20px; }
+
+/* ── TOAST ── */
+.toast-container { position: fixed; top: 80px; right: 24px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+.toast {
+  background: var(--text); color: #fff; padding: 12px 18px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: toastIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex; align-items: center; gap: 8px; min-width: 240px;
+}
+.toast.success { background: var(--green); }
+.toast.error { background: var(--red); }
+@keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+
+/* ── LOADING ── */
+.spinner {
+  width: 22px; height: 22px; border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite;
+  display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── FEEDBACK TEXTAREA ── */
+.feedback-area {
+  width: 100%; padding: 10px; border: 1.5px solid var(--border); border-radius: 6px;
+  font-family: var(--font-body); font-size: 13px; resize: vertical; min-height: 60px;
+  margin-top: 10px; outline: none; background: var(--white);
+}
+.feedback-area:focus { border-color: var(--amber); }
+
+/* ── WELCOME BANNER ── */
+.welcome-banner {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  border-radius: var(--radius); padding: 28px 32px; margin-bottom: 28px;
+  color: #fff; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.welcome-banner::after {
+  content: '🏫'; position: absolute; right: 28px; bottom: -10px;
+  font-size: 80px; opacity: 0.15;
+}
+.welcome-banner h2 { font-family: var(--font); font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.welcome-banner p { font-size: 14px; opacity: 0.85; }
+
+/* ── FLAGS ── */
+.kenya-flag {
+  display: flex; height: 4px; border-radius: 2px; overflow: hidden; margin-bottom: 20px;
+}
+.kenya-flag .k1 { flex: 1; background: #006600; }
+.kenya-flag .k2 { flex: 1; background: #fff; }
+.kenya-flag .k3 { flex: 1; background: #000; }
+.kenya-flag .k4 { flex: 1; background: #fff; }
+.kenya-flag .k5 { flex: 1; background: #BB0000; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ LOGIN ═══════════════════════════════════════ -->
+<div id="view-login" class="view active">
+  <div class="login-pattern"></div>
+  <div class="login-card">
+    <div class="kenya-flag"><div class="k1"></div><div class="k2"></div><div class="k3"></div><div class="k4"></div><div class="k5"></div></div>
+    <div class="login-logo">
+      <div class="emblem">📚</div>
+      <h1>Darasa Connect</h1>
+      <p>CBC Class Portal &bull; Kenya Curriculum</p>
+    </div>
+
+    <div class="login-tabs">
+      <button class="login-tab active" onclick="switchLoginTab('teacher')">👩‍🏫 Teacher</button>
+      <button class="login-tab" onclick="switchLoginTab('learner')">🧑‍🎒 Learner</button>
+    </div>
+
+    <!-- Teacher Login -->
+    <div id="teacher-login-form">
+      <div id="teacher-login-error" class="login-error">❌ Invalid username or password.</div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="teacher-username" placeholder="Enter teacher username" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="teacher-password" placeholder="Enter password">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="teacherLogin()">Login as Teacher →</button>
+      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px;">
+      </p>
+    </div>
+
+    <!-- Learner Login -->
+    <div id="learner-login-form" style="display:none;">
+      <div id="learner-login-error" class="login-error">❌ Invalid name selection or PIN.</div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <div class="learner-select-wrap">
+          <select id="learner-select">
+            <option value="">— Select your name —</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Your PIN</label>
+        <input type="password" id="learner-pin" placeholder="Enter your 4-digit PIN" maxlength="4" inputmode="numeric">
+      </div>
+      <button class="btn btn-sky btn-full" onclick="learnerLogin()">Login as Learner →</button>
+      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px;">
+        Your PIN was given by the teacher. Contact teacher if you forgot it.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ APP ═══════════════════════════════════════ -->
+<div id="view-app" class="view">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-brand" onclick="goHome()">
+      <div class="mini-logo">📚</div>
+      <div>
+        <h2>Darasa Connect</h2>
+        <span id="topbar-class-label">CBC Class Portal</span>
+      </div>
+    </div>
+    <div class="topbar-user">
+      <div class="user-badge">
+        <div class="user-avatar" id="topbar-avatar"></div>
+        <div>
+          <div class="user-name" id="topbar-name">—</div>
+          <div class="user-role" id="topbar-role">—</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <!-- SIDEBAR -->
+    <nav class="sidebar" id="main-sidebar"></nav>
+
+    <!-- CONTENT -->
+    <main class="main-content" id="main-content">
+
+      <!-- ── TEACHER PAGES ── -->
+
+      <!-- Dashboard -->
+      <div class="page" id="page-t-dashboard">
+        <div class="welcome-banner">
+          <div>
+            <h2 id="t-welcome-msg">Good morning, Teacher! 👋</h2>
+            <p>Manage homework, track submissions, and mark learner work.</p>
+          </div>
+        </div>
+        <div class="stats-grid" id="t-stats-grid"></div>
+        <h3 style="font-family:var(--font);font-weight:800;margin-bottom:14px;">Recent Homework</h3>
+        <div id="t-recent-hw"></div>
+      </div>
+
+      <!-- Post Homework -->
+      <div class="page" id="page-t-post">
+        <div class="page-header">
+          <div><h1>Post Homework</h1><p>Create an assignment for the class</p></div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:28px;border:1px solid var(--border);max-width:680px;">
+          <div class="form-group">
+            <label>Subject</label>
+            <select id="hw-subject">
+              <option value="">— Select Subject —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Homework Title</label>
+            <input type="text" id="hw-title" placeholder="e.g. Fractions – Exercise 3B">
+          </div>
+          <div class="form-group">
+            <label>Instructions / Description</label>
+            <textarea id="hw-desc" placeholder="Provide any instructions or context for learners..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Due Date</label>
+            <input type="date" id="hw-due">
+          </div>
+          <div class="divider"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <label style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-2);">Questions</label>
+            <button class="btn btn-ghost btn-sm" onclick="addQuestion()">+ Add Question</button>
+          </div>
+          <div class="question-builder" id="question-builder"></div>
+          <div class="divider"></div>
+          <button class="btn btn-primary" onclick="postHomework()" style="min-width:180px;">
+            📤 Post Homework
+          </button>
+        </div>
+      </div>
+
+      <!-- All Homework -->
+      <div class="page" id="page-t-homework">
+        <div class="page-header">
+          <div><h1>All Homework</h1><p>View and manage posted assignments</p></div>
+        </div>
+        <div class="subject-bar" id="t-hw-subject-filter"></div>
+        <div id="t-hw-list" class="hw-grid"></div>
+      </div>
+
+      <!-- Submissions (for a specific HW) -->
+      <div class="page" id="page-t-submissions">
+        <div class="page-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showPage('page-t-homework')" style="margin-bottom:10px;">← Back</button>
+            <h1 id="t-sub-title">Submissions</h1>
+            <p id="t-sub-meta"></p>
+          </div>
+        </div>
+        <div id="t-sub-list" class="submissions-list"></div>
+      </div>
+
+      <!-- Mark a submission -->
+      <div class="page" id="page-t-mark">
+        <div class="page-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" id="t-mark-back-btn" onclick="" style="margin-bottom:10px;">← Back to Submissions</button>
+            <h1 id="t-mark-title">Mark Submission</h1>
+            <p id="t-mark-meta"></p>
+          </div>
+        </div>
+        <div id="t-mark-content"></div>
+        <button class="btn btn-primary" onclick="saveMarks()" id="save-marks-btn" style="margin-top:10px;min-width:180px;">💾 Save Marks</button>
+      </div>
+
+      <!-- Learner Progress -->
+      <div class="page" id="page-t-progress">
+        <div class="page-header">
+          <div><h1>Learner Progress</h1><p>Overall class performance overview</p></div>
+        </div>
+        <div id="t-progress-content"></div>
+      </div>
+
+      <!-- Longhorn Books -->
+      <div class="page" id="page-longhorn">
+        <div class="page-header">
+          <div><h1>📗 Longhorn CBC Books</h1><p>Kenya's leading CBC curriculum publisher</p></div>
+        </div>
+        <div class="notice info">ℹ️ Longhorn Publishers is the official CBC curriculum textbook provider. Use these books alongside homework assignments.</div>
+        <div id="longhorn-books-grid" class="books-grid"></div>
+        <div class="divider"></div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
+          <h3 style="font-family:var(--font);font-weight:800;margin-bottom:8px;">About Longhorn Publishers</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Longhorn Publishers Limited is Kenya's leading educational publisher, providing textbooks, learning materials, and digital resources aligned to the Competency Based Curriculum (CBC) for Grade 1–9. Their books are approved by the Kenya Institute of Curriculum Development (KICD) and available at major bookstores across Kenya.</p>
+          <a href="https://longhornpublishers.com" target="_blank" class="btn btn-primary" style="margin-top:16px;">🌐 Visit Longhorn Website</a>
+        </div>
+      </div>
+
+      <!-- Manage Learners -->
+      <div class="page" id="page-t-learners">
+        <div class="page-header">
+          <div><h1>Learners (30)</h1><p>Class roster and login credentials</p></div>
+        </div>
+        <div class="notice warn">⚠️ Keep this page private. Only show learners their own names and PINs.</div>
+        <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;">
+          <table class="data-table" id="learners-table"></table>
+        </div>
+      </div>
+
+      <!-- ── LEARNER PAGES ── -->
+
+      <!-- Learner Dashboard -->
+      <div class="page" id="page-l-dashboard">
+        <div class="welcome-banner">
+          <div>
+            <h2 id="l-welcome-msg">Hello, Learner! 📖</h2>
+            <p>View your homework assignments and submit your answers.</p>
+          </div>
+        </div>
+        <div class="stats-grid" id="l-stats-grid"></div>
+        <h3 style="font-family:var(--font);font-weight:800;margin-bottom:14px;">My Homework</h3>
+        <div class="subject-bar" id="l-subj-filter"></div>
+        <div id="l-hw-list" class="hw-grid"></div>
+      </div>
+
+      <!-- Learner My Marks -->
+      <div class="page" id="page-l-marks">
+        <div class="page-header">
+          <div><h1>My Marks</h1><p>See how you scored on marked homework</p></div>
+        </div>
+        <div id="l-marks-content"></div>
+      </div>
+
+      <!-- Learner Submit -->
+      <div class="page" id="page-l-submit">
+        <div class="page-header">
+          <div>
+            <button class="btn btn-ghost btn-sm" onclick="showPage('page-l-dashboard')" style="margin-bottom:10px;">← Back</button>
+            <h1 id="l-submit-title">Submit Answers</h1>
+            <p id="l-submit-meta"></p>
+          </div>
+        </div>
+        <div id="l-submit-content"></div>
+        <button class="btn btn-primary" onclick="submitAnswers()" id="submit-answers-btn" style="margin-top:10px;min-width:180px;">📤 Submit Answers</button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobile-nav"></nav>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   DATA & STATE
+════════════════════════════════════════════════════════ */
+const SUBJECTS = [
+  { id: 'kiswahili',   name: 'Kiswahili',              emoji: '🇰🇪', color: '#1B5E3B' },
+  { id: 'english',     name: 'English',                emoji: '📖', color: '#1A6FA8' },
+  { id: 'maths',       name: 'Mathematics',            emoji: '🔢', color: '#7B2D8B' },
+  { id: 'agri',        name: 'Agriculture & Nutrition',emoji: '🌿', color: '#2E7D32' },
+  { id: 'science',     name: 'Science & Technology',   emoji: '🔬', color: '#C17D11' },
+  { id: 'social',      name: 'Social Studies',         emoji: '🌍', color: '#1565C0' },
+  { id: 'cre',         name: 'CRE',                    emoji: '✝️', color: '#5D4037' },
+  { id: 'creative',    name: 'Creative Arts',          emoji: '🎨', color: '#AD1457' },
+];
+
+const LONGHORN_BOOKS = [
+  { subject: 'Kiswahili', title: 'Kiswahili Darasa la 5', grade: 'Grade 5', emoji: '📗', color: '#1B5E3B' },
+  { subject: 'English',   title: 'English Grade 5',       grade: 'Grade 5', emoji: '📘', color: '#1A6FA8' },
+  { subject: 'Maths',     title: 'Longhorn Mathematics 5', grade: 'Grade 5', emoji: '📙', color: '#7B2D8B' },
+  { subject: 'Agriculture & Nutrition', title: 'Agriculture & Nutrition 5', grade: 'Grade 5', emoji: '📗', color: '#2E7D32' },
+  { subject: 'Science & Technology', title: 'Longhorn Science 5', grade: 'Grade 5', emoji: '📒', color: '#C17D11' },
+  { subject: 'Social Studies', title: 'Social Studies 5', grade: 'Grade 5', emoji: '📘', color: '#1565C0' },
+  { subject: 'CRE',       title: 'Christian Religious Education 5', grade: 'Grade 5', emoji: '📕', color: '#5D4037' },
+  { subject: 'Creative Arts', title: 'Creative Arts & Design 5', grade: 'Grade 5', emoji: '📓', color: '#AD1457' },
+];
+
+const INIT_LEARNERS = [
+  { id:'l01', name:'laureen Njeri wanjiru',    pin:'1001' },
+  { id:'l02', name:'Joel Otieno',    pin:'1002' },
+  { id:'l03', name:'Ashlyn Muthoni',    pin:'1003' },
+  { id:'l04', name:'Sharlyne Gati',      pin:'1004' },
+  { id:'l05', name:'Sharleen Njeri',    pin:'1005' },
+  { id:'l06', name:'Lucie Wangui',     pin:'1006' },
+  { id:'l07', name:'Alpha Samwuel',      pin:'1007' },
+  { id:'l08', name:'Brandon Lusioli',    pin:'1008' },
+  { id:'l09', name:'Simon Musila',       pin:'1009' },
+  { id:'l10', name:'Norah Moraa',   pin:'1010' },
+  { id:'l11', name:'Shantel Ragae',     pin:'1011' },
+];
+
+// DB helpers
+function db(key, val) {
+  if (val === undefined) {
+    try { return JSON.parse(localStorage.getItem('dc_' + key)) || []; } catch { return []; }
+  }
+  localStorage.setItem('dc_' + key, JSON.stringify(val));
+}
+
+function initDB() {
+  if (!localStorage.getItem('dc_initialized')) {
+    db('learners', INIT_LEARNERS);
+    db('homework', []);
+    db('submissions', []);
+    localStorage.setItem('dc_initialized', '1');
+  }
+  // Populate learner select
+  const sel = document.getElementById('learner-select');
+  db('learners').forEach(l => {
+    const o = document.createElement('option');
+    o.value = l.id; o.textContent = l.name; sel.appendChild(o);
+  });
+  // Populate subject select
+  const hwSel = document.getElementById('hw-subject');
+  SUBJECTS.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s.id; o.textContent = s.emoji + ' ' + s.name; hwSel.appendChild(o);
+  });
+  // Default due date
+  const due = document.getElementById('hw-due');
+  const d = new Date(); d.setDate(d.getDate() + 7);
+  due.value = d.toISOString().split('T')[0];
+  // Longhorn books
+  renderLonghornBooks();
+}
+
+/* ════════════════════════════════════════════════════════
+   AUTH
+════════════════════════════════════════════════════════ */
+let currentUser = null;
+
+function switchLoginTab(tab) {
+  document.querySelectorAll('.login-tab').forEach((t,i) => t.classList.toggle('active', (tab==='teacher'&&i===0)||(tab==='learner'&&i===1)));
+  document.getElementById('teacher-login-form').style.display = tab === 'teacher' ? '' : 'none';
+  document.getElementById('learner-login-form').style.display = tab === 'learner' ? '' : 'none';
+}
+
+function teacherLogin() {
+  const u = document.getElementById('teacher-username').value.trim();
+  const p = document.getElementById('teacher-password').value;
+  const err = document.getElementById('teacher-login-error');
+  if (u === 'teacher' && p === 'Darasa2024') {
+    currentUser = { role: 'teacher', name: 'Teacher', id: 'teacher' };
+    enterApp();
+  } else { err.style.display = 'flex'; }
+}
+
+function learnerLogin() {
+  const sel = document.getElementById('learner-select').value;
+  const pin = document.getElementById('learner-pin').value;
+  const err = document.getElementById('learner-login-error');
+  const learners = db('learners');
+  const found = learners.find(l => l.id === sel && l.pin === pin);
+  if (found) {
+    currentUser = { role: 'learner', name: found.name, id: found.id };
+    enterApp();
+  } else { err.style.display = 'flex'; }
+}
+
+function logout() {
+  currentUser = null;
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-login').classList.add('active');
+  document.getElementById('teacher-username').value = '';
+  document.getElementById('teacher-password').value = '';
+  document.getElementById('learner-select').value = '';
+  document.getElementById('learner-pin').value = '';
+  document.getElementById('teacher-login-error').style.display = 'none';
+  document.getElementById('learner-login-error').style.display = 'none';
+}
+
+function enterApp() {
+  document.getElementById('view-login').classList.remove('active');
+  document.getElementById('view-app').classList.add('active');
+
+  const avatar = document.getElementById('topbar-avatar');
+  const nameEl = document.getElementById('topbar-name');
+  const roleEl = document.getElementById('topbar-role');
+  nameEl.textContent = currentUser.name;
+
+  if (currentUser.role === 'teacher') {
+    avatar.className = 'user-avatar avatar-teacher';
+    avatar.textContent = '👩‍🏫';
+    roleEl.textContent = 'Class Teacher';
+    renderSidebar('teacher');
+    showPage('page-t-dashboard');
+    renderTeacherDashboard();
+  } else {
+    avatar.className = 'user-avatar avatar-learner';
+    avatar.textContent = currentUser.name.charAt(0);
+    roleEl.textContent = 'Learner';
+    renderSidebar('learner');
+    showPage('page-l-dashboard');
+    renderLearnerDashboard();
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   NAV & PAGES
+════════════════════════════════════════════════════════ */
+function renderSidebar(role) {
+  const items = role === 'teacher' ? [
+    { icon:'📊', label:'Dashboard',    page:'page-t-dashboard', action: ()=>{ showPage('page-t-dashboard'); renderTeacherDashboard(); } },
+    { icon:'➕', label:'Post Homework', page:'page-t-post',      action: ()=>{ showPage('page-t-post'); resetPostForm(); } },
+    { icon:'📋', label:'All Homework', page:'page-t-homework',  action: ()=>{ showPage('page-t-homework'); renderTeacherHomework(); } },
+    { icon:'📈', label:'Progress',     page:'page-t-progress',  action: ()=>{ showPage('page-t-progress'); renderProgress(); } },
+    { icon:'👥', label:'Learners',     page:'page-t-learners',  action: ()=>{ showPage('page-t-learners'); renderLearnersTable(); } },
+    { icon:'📗', label:'CBC Books',    page:'page-longhorn',    action: ()=>showPage('page-longhorn') },
+  ] : [
+    { icon:'🏠', label:'Dashboard',    page:'page-l-dashboard', action: ()=>{ showPage('page-l-dashboard'); renderLearnerDashboard(); } },
+    { icon:'🏅', label:'My Marks',     page:'page-l-marks',     action: ()=>{ showPage('page-l-marks'); renderLearnerMarks(); } },
+    { icon:'📗', label:'CBC Books',    page:'page-longhorn',    action: ()=>showPage('page-longhorn') },
+  ];
+
+  // FIXED: sanitize hyphens → underscores so function names are valid JS identifiers
+  items.forEach(i => {
+    const fn = 'nav_' + i.page.replace(/-/g, '_');
+    window[fn] = i.action;
+  });
+
+  const sidebarHTML = '<div class="sidebar-section-label">Menu</div>' +
+    items.map(i => {
+      const fn = 'nav_' + i.page.replace(/-/g, '_');
+      return `<button class="nav-item" data-page="${i.page}" onclick="${fn}()"><span class="nav-icon">${i.icon}</span> ${i.label}</button>`;
+    }).join('');
+  document.getElementById('main-sidebar').innerHTML = sidebarHTML;
+
+  document.getElementById('mobile-nav').innerHTML = items.map(i => {
+    const fn = 'nav_' + i.page.replace(/-/g, '_');
+    return `<button class="nav-item" data-page="${i.page}" onclick="${fn}()"><span class="nav-icon">${i.icon}</span> ${i.label.split(' ')[0]}</button>`;
+  }).join('');
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === id));
+  window.scrollTo(0,0);
+}
+
+function goHome() {
+  if (!currentUser) return;
+  if (currentUser.role === 'teacher') { showPage('page-t-dashboard'); renderTeacherDashboard(); }
+  else { showPage('page-l-dashboard'); renderLearnerDashboard(); }
+}
+
+/* ════════════════════════════════════════════════════════
+   TEACHER DASHBOARD
+════════════════════════════════════════════════════════ */
+function renderTeacherDashboard() {
+  const hw = db('homework');
+  const subs = db('submissions');
+  const hrs = new Date().getHours();
+  const greet = hrs < 12 ? 'Good morning' : hrs < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('t-welcome-msg').textContent = greet + ', Teacher! 👋';
+
+  const totalPending = subs.filter(s => !s.marked).length;
+  document.getElementById('t-stats-grid').innerHTML = `
+    <div class="stat-card"><div class="stat-icon green">📋</div><div><div class="stat-value">${hw.length}</div><div class="stat-label">Homework Posted</div></div></div>
+    <div class="stat-card"><div class="stat-icon sky">📤</div><div><div class="stat-value">${subs.length}</div><div class="stat-label">Total Submissions</div></div></div>
+    <div class="stat-card"><div class="stat-icon amber">⏳</div><div><div class="stat-value">${totalPending}</div><div class="stat-label">Pending Marking</div></div></div>
+    <div class="stat-card"><div class="stat-icon green">👥</div><div><div class="stat-value">30</div><div class="stat-label">Learners</div></div></div>
+  `;
+
+  const recent = [...hw].sort((a,b)=>b.createdAt-a.createdAt).slice(0,5);
+  document.getElementById('t-recent-hw').innerHTML = recent.length
+    ? recent.map(h => hwCardHTML(h, 'teacher')).join('')
+    : emptyState('No homework posted yet', 'Click "Post Homework" to create the first assignment.');
+}
+
+/* ════════════════════════════════════════════════════════
+   POST HOMEWORK
+════════════════════════════════════════════════════════ */
+let qCount = 0;
+function resetPostForm() {
+  document.getElementById('hw-subject').value = '';
+  document.getElementById('hw-title').value = '';
+  document.getElementById('hw-desc').value = '';
+  const d = new Date(); d.setDate(d.getDate() + 7);
+  document.getElementById('hw-due').value = d.toISOString().split('T')[0];
+  qCount = 0;
+  document.getElementById('question-builder').innerHTML = '';
+  addQuestion();
+}
+
+function addQuestion() {
+  qCount++;
+  const n = qCount;
+  const div = document.createElement('div');
+  div.className = 'question-item'; div.id = 'q-' + n;
+  div.innerHTML = `
+    <div class="q-num">Question ${n}</div>
+    <textarea placeholder="Type question ${n} here..." id="q-text-${n}"></textarea>
+    ${n > 1 ? `<button class="remove-q" onclick="removeQuestion(${n})" title="Remove">✕</button>` : ''}
+  `;
+  document.getElementById('question-builder').appendChild(div);
+}
+
+function removeQuestion(n) {
+  document.getElementById('q-' + n).remove();
+}
+
+function postHomework() {
+  const subject = document.getElementById('hw-subject').value;
+  const title = document.getElementById('hw-title').value.trim();
+  const desc = document.getElementById('hw-desc').value.trim();
+  const due = document.getElementById('hw-due').value;
+  if (!subject) { toast('Please select a subject', 'error'); return; }
+  if (!title) { toast('Please enter a homework title', 'error'); return; }
+
+  // Gather questions
+  const questions = [];
+  document.querySelectorAll('[id^="q-text-"]').forEach(el => {
+    const text = el.value.trim();
+    if (text) questions.push({ id: 'q' + Date.now() + Math.random().toString(36).slice(2,5), text });
+  });
+  if (questions.length === 0) { toast('Add at least one question', 'error'); return; }
+
+  const hw = db('homework');
+  hw.push({
+    id: 'hw' + Date.now(),
+    subject, title, desc, due, questions,
+    createdAt: Date.now()
+  });
+  db('homework', hw);
+  toast('Homework posted successfully! 🎉', 'success');
+  resetPostForm();
+  showPage('page-t-homework');
+  renderTeacherHomework();
+}
+
+/* ════════════════════════════════════════════════════════
+   TEACHER ALL HOMEWORK
+════════════════════════════════════════════════════════ */
+let tHwFilter = 'all';
+function renderTeacherHomework() {
+  const hw = db('homework');
+  const bar = document.getElementById('t-hw-subject-filter');
+  bar.innerHTML = chipHTML('all', '📋 All', tHwFilter === 'all', () => { tHwFilter='all'; renderTeacherHomework(); });
+  SUBJECTS.forEach(s => {
+    if (hw.some(h => h.subject === s.id))
+      bar.innerHTML += chipHTML(s.id, s.emoji+' '+s.name, tHwFilter===s.id, ()=>{ tHwFilter=s.id; renderTeacherHomework(); });
+  });
+
+  const filtered = tHwFilter === 'all' ? hw : hw.filter(h => h.subject === tHwFilter);
+  const sorted = [...filtered].sort((a,b)=>b.createdAt-a.createdAt);
+  document.getElementById('t-hw-list').innerHTML = sorted.length
+    ? sorted.map(h => hwCardHTML(h, 'teacher')).join('')
+    : emptyState('No homework in this subject yet', 'Try posting some or selecting a different filter.');
+}
+
+function chipHTML(id, label, active, fn) {
+  const fnName = 'chip_' + id.replace(/[^a-z0-9]/gi,'_');
+  window[fnName] = fn;
+  return `<button class="subject-chip ${active?'active':''}" onclick="${fnName}()">${label}</button>`;
+}
+
+/* ════════════════════════════════════════════════════════
+   HOMEWORK CARD
+════════════════════════════════════════════════════════ */
+function hwCardHTML(h, viewAs) {
+  const subs = db('submissions').filter(s => s.homeworkId === h.id);
+  const subj = SUBJECTS.find(s => s.id === h.subject) || {};
+  const dateStr = new Date(h.createdAt).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'});
+  const due = h.due ? new Date(h.due).toLocaleDateString('en-KE',{day:'numeric',month:'short'}) : '';
+  const markedCount = subs.filter(s=>s.marked).length;
+  let footerHTML = '';
+  let clickFn = '';
+
+  if (viewAs === 'teacher') {
+    footerHTML = `
+      <span class="tag tag-subject">${subj.emoji||''} ${subj.name||h.subject}</span>
+      <span class="tag tag-date">📅 ${dateStr}</span>
+      ${due?`<span class="tag tag-due">⏰ Due: ${due}</span>`:''}
+      <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+      <span class="tag tag-submitted">📤 ${subs.length}/30 submitted</span>
+      ${markedCount>0?`<span class="tag tag-marked">✅ ${markedCount} marked</span>`:''}
+    `;
+    const fnName = 'viewSubs_'+h.id;
+    window[fnName] = ()=>viewSubmissions(h.id);
+    clickFn = fnName+'()';
+  } else {
+    // Learner view
+    const mySub = db('submissions').find(s=>s.homeworkId===h.id && s.learnerId===currentUser.id);
+    const status = mySub ? (mySub.marked?'✅ Marked':'📤 Submitted') : '⏳ Pending';
+    const tagClass = mySub ? (mySub.marked?'tag-marked':'tag-submitted') : 'tag-pending';
+    footerHTML = `
+      <span class="tag tag-subject">${subj.emoji||''} ${subj.name||h.subject}</span>
+      <span class="tag tag-date">📅 ${dateStr}</span>
+      ${due?`<span class="tag tag-due">⏰ Due: ${due}</span>`:''}
+      <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+      <span class="tag ${tagClass}">${status}</span>
+    `;
+    const fnName = 'openHW_'+h.id;
+    window[fnName] = ()=>openLearnerHomework(h.id);
+    clickFn = fnName+'()';
+  }
+
+  return `
+    <div class="hw-card" onclick="${clickFn}">
+      <div class="hw-card-header">
+        <div>
+          <div class="hw-card-title">${escHtml(h.title)}</div>
+        </div>
+      </div>
+      ${h.desc?`<div class="hw-card-body">${escHtml(h.desc)}</div>`:''}
+      <div class="hw-card-footer">${footerHTML}</div>
+      ${viewAs==='teacher'?`<div style="margin-top:12px;"><button class="btn btn-primary btn-sm" onclick="event.stopPropagation();viewSubmissions('${h.id}')">View Submissions (${subs.length})</button> <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();deleteHomework('${h.id}')" style="margin-left:6px;">🗑️ Delete</button></div>`:''}
+    </div>`;
+}
+
+function deleteHomework(id) {
+  if (!confirm('Delete this homework and all its submissions?')) return;
+  db('homework', db('homework').filter(h=>h.id!==id));
+  db('submissions', db('submissions').filter(s=>s.homeworkId!==id));
+  toast('Homework deleted', 'success');
+  renderTeacherHomework();
+}
+
+/* ════════════════════════════════════════════════════════
+   VIEW SUBMISSIONS (Teacher)
+════════════════════════════════════════════════════════ */
+function viewSubmissions(hwId) {
+  const hw = db('homework').find(h=>h.id===hwId);
+  if (!hw) return;
+  const subs = db('submissions').filter(s=>s.homeworkId===hwId);
+  const learners = db('learners');
+  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
+
+  document.getElementById('t-sub-title').textContent = hw.title;
+  document.getElementById('t-sub-meta').textContent = `${subj.emoji||''} ${subj.name||hw.subject} · ${subs.length} of 30 submitted`;
+
+  // Build submission list (all 30 learners)
+  let html = '';
+  learners.forEach(l => {
+    const sub = subs.find(s=>s.learnerId===l.id);
+    if (sub) {
+      const markLabel = sub.marked ? `✅ Marked` : `⏳ Not marked yet`;
+      const markColor = sub.marked ? 'var(--green)' : 'var(--amber)';
+      html += `
+        <div class="submission-row">
+          <div>
+            <div class="learner-name">${escHtml(l.name)}</div>
+            <div class="sub-meta">Submitted: ${new Date(sub.submittedAt).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})} &bull; <span style="color:${markColor};font-weight:700;">${markLabel}</span></div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openMarkPage('${hwId}','${sub.id}')">✏️ Mark</button>
+        </div>`;
+    } else {
+      html += `
+        <div class="submission-row" style="opacity:0.6;">
+          <div>
+            <div class="learner-name">${escHtml(l.name)}</div>
+            <div class="sub-meta" style="color:var(--red);">Not submitted yet</div>
+          </div>
+          <span class="tag tag-pending">Pending</span>
+        </div>`;
+    }
+  });
+
+  document.getElementById('t-sub-list').innerHTML = html || emptyState('No submissions yet','Learners have not submitted answers for this homework.');
+  document.getElementById('t-mark-back-btn').onclick = ()=>viewSubmissions(hwId);
+  showPage('page-t-submissions');
+}
+
+/* ════════════════════════════════════════════════════════
+   MARKING PAGE (Teacher)
+════════════════════════════════════════════════════════ */
+let _markingHwId = null, _markingSubId = null;
+
+function openMarkPage(hwId, subId) {
+  _markingHwId = hwId; _markingSubId = subId;
+  const hw = db('homework').find(h=>h.id===hwId);
+  const subs = db('submissions');
+  const sub = subs.find(s=>s.id===subId);
+  const learner = db('learners').find(l=>l.id===sub.learnerId);
+  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
+
+  document.getElementById('t-mark-title').textContent = `Marking: ${learner.name}`;
+  document.getElementById('t-mark-meta').textContent = `${hw.title} · ${subj.emoji} ${subj.name}`;
+
+  let html = '';
+  hw.questions.forEach((q, i) => {
+    const ans = (sub.answers||{})[q.id] || '<em style="color:var(--text-3);">No answer provided</em>';
+    const currentMark = (sub.marks||{})[q.id] || null;
+    html += `
+      <div class="submission-answer-block">
+        <div class="q-num-label" style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--green);margin-bottom:6px;">Question ${i+1}</div>
+        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">${escHtml(q.text)}</div>
+        <div class="learner-answer-text">${escHtml((sub.answers||{})[q.id]||'') || '<em>No answer</em>'}</div>
+        <div class="mark-buttons">
+          <button class="mark-btn correct ${currentMark==='correct'?'selected':''}" onclick="setMark('${q.id}','correct',this)">✅ Correct</button>
+          <button class="mark-btn partial ${currentMark==='partial'?'selected':''}" onclick="setMark('${q.id}','partial',this)">🟡 Partial</button>
+          <button class="mark-btn wrong ${currentMark==='wrong'?'selected':''}" onclick="setMark('${q.id}','wrong',this)">❌ Wrong</button>
+        </div>
+      </div>`;
+  });
+
+  const feedback = sub.feedback||'';
+  html += `
+    <div style="background:var(--white);border-radius:var(--radius);padding:20px;border:1px solid var(--border);">
+      <label style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);display:block;margin-bottom:8px;">Teacher's Feedback (Optional)</label>
+      <textarea class="feedback-area" id="teacher-feedback" placeholder="Write overall feedback for this learner...">${escHtml(feedback)}</textarea>
+    </div>`;
+
+  document.getElementById('t-mark-content').innerHTML = html;
+  showPage('page-t-mark');
+}
+
+// Store temp marks in DOM
+const tempMarks = {};
+function setMark(qId, mark, btn) {
+  tempMarks[qId] = mark;
+  const parent = btn.closest('.mark-buttons');
+  parent.querySelectorAll('.mark-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function saveMarks() {
+  const subs = db('submissions');
+  const idx = subs.findIndex(s=>s.id===_markingSubId);
+  if (idx<0) return;
+  // Merge tempMarks with existing
+  subs[idx].marks = Object.assign(subs[idx].marks||{}, tempMarks);
+  subs[idx].feedback = document.getElementById('teacher-feedback').value;
+  subs[idx].marked = true;
+  db('submissions', subs);
+  // Clear temp marks
+  Object.keys(tempMarks).forEach(k=>delete tempMarks[k]);
+  toast('Marks saved! ✅', 'success');
+  viewSubmissions(_markingHwId);
+}
+
+/* ════════════════════════════════════════════════════════
+   PROGRESS (Teacher)
+════════════════════════════════════════════════════════ */
+function renderProgress() {
+  const learners = db('learners');
+  const subs = db('submissions');
+  const hw = db('homework');
+
+  let tableHTML = `
+    <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;">
+    <table class="data-table">
+      <thead><tr>
+        <th>#</th><th>Learner Name</th><th>Submitted</th><th>Marked</th><th>Correct</th><th>Partial</th><th>Wrong</th>
+      </tr></thead><tbody>`;
+
+  learners.forEach((l,i)=>{
+    const mySubs = subs.filter(s=>s.learnerId===l.id);
+    const marked = mySubs.filter(s=>s.marked);
+    let correct=0, partial=0, wrong=0;
+    marked.forEach(s=>{
+      Object.values(s.marks||{}).forEach(m=>{
+        if(m==='correct') correct++;
+        else if(m==='partial') partial++;
+        else if(m==='wrong') wrong++;
+      });
+    });
+    tableHTML += `<tr>
+      <td style="color:var(--text-3);font-size:12px;">${i+1}</td>
+      <td style="font-weight:700;">${escHtml(l.name)}</td>
+      <td>${mySubs.length}</td>
+      <td>${marked.length}</td>
+      <td style="color:var(--green);font-weight:700;">${correct}</td>
+      <td style="color:var(--amber);font-weight:700;">${partial}</td>
+      <td style="color:var(--red);font-weight:700;">${wrong}</td>
+    </tr>`;
+  });
+  tableHTML += '</tbody></table></div>';
+  document.getElementById('t-progress-content').innerHTML = tableHTML;
+}
+
+/* ════════════════════════════════════════════════════════
+   LEARNERS TABLE
+════════════════════════════════════════════════════════ */
+function renderLearnersTable() {
+  const learners = db('learners');
+  document.getElementById('learners-table').innerHTML = `
+    <thead><tr><th>#</th><th>Name</th><th>Learner ID</th><th>PIN</th></tr></thead>
+    <tbody>${learners.map((l,i)=>`
+      <tr>
+        <td style="color:var(--text-3);font-size:12px;">${i+1}</td>
+        <td style="font-weight:700;">${escHtml(l.name)}</td>
+        <td><code style="background:var(--sand);padding:2px 8px;border-radius:4px;font-size:12px;">${l.id}</code></td>
+        <td><code style="background:var(--green-pale);color:var(--green);padding:2px 8px;border-radius:4px;font-size:13px;font-weight:700;">${l.pin}</code></td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+/* ════════════════════════════════════════════════════════
+   LEARNER DASHBOARD
+════════════════════════════════════════════════════════ */
+let lHwFilter = 'all';
+function renderLearnerDashboard() {
+  const hrs = new Date().getHours();
+  const greet = hrs < 12 ? 'Good morning' : hrs < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('l-welcome-msg').textContent = greet + ', ' + (currentUser.name.split(' ')[0]) + '! 📖';
+
+  const hw = db('homework');
+  const mySubs = db('submissions').filter(s=>s.learnerId===currentUser.id);
+  const pending = hw.filter(h=>!mySubs.find(s=>s.homeworkId===h.id));
+  const marked = mySubs.filter(s=>s.marked);
+
+  document.getElementById('l-stats-grid').innerHTML = `
+    <div class="stat-card"><div class="stat-icon sky">📋</div><div><div class="stat-value">${hw.length}</div><div class="stat-label">Total Homework</div></div></div>
+    <div class="stat-card"><div class="stat-icon green">📤</div><div><div class="stat-value">${mySubs.length}</div><div class="stat-label">Submitted</div></div></div>
+    <div class="stat-card"><div class="stat-icon amber">⏳</div><div><div class="stat-value">${pending.length}</div><div class="stat-label">Still Pending</div></div></div>
+    <div class="stat-card"><div class="stat-icon green">✅</div><div><div class="stat-value">${marked.length}</div><div class="stat-label">Marked</div></div></div>
+  `;
+
+  // Subject filter
+  const bar = document.getElementById('l-subj-filter');
+  bar.innerHTML = chipHTML('l_all', '📋 All', lHwFilter==='all', ()=>{ lHwFilter='all'; renderLearnerDashboard(); });
+  SUBJECTS.forEach(s => {
+    if (hw.some(h=>h.subject===s.id))
+      bar.innerHTML += chipHTML('l_'+s.id, s.emoji+' '+s.name, lHwFilter===s.id, ()=>{ lHwFilter=s.id; renderLearnerDashboard(); });
+  });
+
+  const filtered = lHwFilter==='all' ? hw : hw.filter(h=>h.subject===lHwFilter);
+  const sorted = [...filtered].sort((a,b)=>b.createdAt-a.createdAt);
+  document.getElementById('l-hw-list').innerHTML = sorted.length
+    ? sorted.map(h=>hwCardHTML(h,'learner')).join('')
+    : emptyState('No homework yet','Your teacher has not posted any assignments yet. Check back soon!');
+}
+
+/* ════════════════════════════════════════════════════════
+   LEARNER SUBMIT HOMEWORK
+════════════════════════════════════════════════════════ */
+let _currentHwId = null;
+function openLearnerHomework(hwId) {
+  _currentHwId = hwId;
+  const hw = db('homework').find(h=>h.id===hwId);
+  if (!hw) return;
+  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
+  const existingSub = db('submissions').find(s=>s.homeworkId===hwId && s.learnerId===currentUser.id);
+
+  document.getElementById('l-submit-title').textContent = hw.title;
+  document.getElementById('l-submit-meta').textContent = `${subj.emoji} ${subj.name} · ${hw.questions.length} questions`;
+
+  let html = '';
+  if (hw.desc) {
+    html += `<div class="notice info">📌 <span>${escHtml(hw.desc)}</span></div>`;
+  }
+
+  const isSubmitted = !!existingSub;
+  const isMarked = existingSub?.marked;
+
+  if (isSubmitted) {
+    html += `<div class="notice ${isMarked?'success':'warn'}">${isMarked?'✅ This homework has been marked by your teacher. See your marks below.':'📤 You have already submitted this homework. Awaiting teacher marking.'}</div>`;
+  }
+
+  hw.questions.forEach((q, i) => {
+    const existingAnswer = (existingSub?.answers||{})[q.id] || '';
+    const mark = (existingSub?.marks||{})[q.id];
+    const markIcon = mark==='correct'?'✅':mark==='partial'?'🟡':mark==='wrong'?'❌':'';
+
+    html += `
+      <div class="answer-block">
+        <div class="q-num-label">Question ${i+1}</div>
+        <div class="q-text">${escHtml(q.text)}</div>
+        ${isSubmitted ? `
+          <div style="background:var(--sky-pale);border-radius:8px;padding:12px;font-size:14px;border-left:3px solid var(--sky);">
+            ${escHtml(existingAnswer)||'<em style="color:var(--text-3);">No answer submitted</em>'}
+          </div>
+          ${isMarked ? `<div style="margin-top:10px;font-size:14px;font-weight:700;color:${mark==='correct'?'var(--green)':mark==='wrong'?'var(--red)':'var(--amber)'};">${markIcon} ${mark ? mark.charAt(0).toUpperCase()+mark.slice(1) : ''}</div>` : ''}
+        ` : `<textarea placeholder="Write your answer here..." id="ans-${q.id}">${escHtml(existingAnswer)}</textarea>`}
+      </div>`;
+  });
+
+  if (isSubmitted && existingSub.feedback) {
+    html += `<div style="background:var(--amber-pale);border-radius:var(--radius);padding:18px;border-left:4px solid var(--amber);margin-bottom:14px;"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--amber);">Teacher's Feedback</strong><p style="margin-top:6px;font-size:14px;color:var(--text);">${escHtml(existingSub.feedback)}</p></div>`;
+  }
+
+  document.getElementById('l-submit-content').innerHTML = html;
+  document.getElementById('submit-answers-btn').style.display = isSubmitted ? 'none' : '';
+  showPage('page-l-submit');
+}
+
+function submitAnswers() {
+  const hw = db('homework').find(h=>h.id===_currentHwId);
+  if (!hw) return;
+
+  const answers = {};
+  let allAnswered = true;
+  hw.questions.forEach(q => {
+    const el = document.getElementById('ans-'+q.id);
+    if (el) {
+      answers[q.id] = el.value.trim();
+      if (!answers[q.id]) allAnswered = false;
+    }
+  });
+
+  if (!allAnswered) {
+    if (!confirm('Some questions are unanswered. Submit anyway?')) return;
+  }
+
+  const subs = db('submissions');
+  subs.push({
+    id: 'sub' + Date.now(),
+    homeworkId: _currentHwId,
+    learnerId: currentUser.id,
+    answers,
+    submittedAt: Date.now(),
+    marks: {},
+    marked: false,
+    feedback: ''
+  });
+  db('submissions', subs);
+  toast('Answers submitted! Good work 🎉', 'success');
+  showPage('page-l-dashboard');
+  renderLearnerDashboard();
+}
+
+/* ════════════════════════════════════════════════════════
+   LEARNER MARKS
+════════════════════════════════════════════════════════ */
+function renderLearnerMarks() {
+  const mySubs = db('submissions').filter(s=>s.learnerId===currentUser.id && s.marked);
+  const hw = db('homework');
+
+  if (!mySubs.length) {
+    document.getElementById('l-marks-content').innerHTML = emptyState('No marks yet','Your teacher has not marked any of your submissions yet.');
+    return;
+  }
+
+  let html = '';
+  mySubs.forEach(sub => {
+    const h = hw.find(x=>x.id===sub.homeworkId);
+    if (!h) return;
+    const subj = SUBJECTS.find(s=>s.id===h.subject)||{};
+    const marks = sub.marks||{};
+    const totalQ = h.questions.length;
+    const correct = Object.values(marks).filter(m=>m==='correct').length;
+    const partial = Object.values(marks).filter(m=>m==='partial').length;
+    const wrong = Object.values(marks).filter(m=>m==='wrong').length;
+    const score = Math.round(((correct + partial*0.5) / totalQ) * 100);
+    const barClass = score >= 70 ? '' : score >= 40 ? 'warn' : 'danger';
+
+    html += `
+      <div class="marks-card">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+          <div>
+            <div style="font-family:var(--font);font-size:17px;font-weight:800;">${escHtml(h.title)}</div>
+            <div style="font-size:13px;color:var(--text-3);margin-top:3px;">${subj.emoji} ${subj.name}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:var(--font);font-size:28px;font-weight:800;color:${score>=70?'var(--green)':score>=40?'var(--amber)':'var(--red)'};">${score}%</div>
+            <div style="font-size:12px;color:var(--text-3);">${correct}✅ ${partial}🟡 ${wrong}❌</div>
+          </div>
+        </div>
+        <div class="score-bar-wrap"><div class="score-bar ${barClass}" style="width:${score}%"></div></div>
+        <div class="divider"></div>
+        ${h.questions.map((q,i)=>{
+          const m = marks[q.id];
+          const icon = m==='correct'?'✅':m==='partial'?'🟡':m==='wrong'?'❌':'⬜';
+          return `<div class="answer-review-item">
+            <span class="mark-icon">${icon}</span>
+            <div>
+              <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Q${i+1}: ${escHtml(q.text)}</div>
+              <div style="font-size:13px;color:var(--text-2);font-style:italic;">${escHtml((sub.answers||{})[q.id]||'No answer')}</div>
+            </div>
+          </div>`;
+        }).join('')}
+        ${sub.feedback?`<div style="background:var(--amber-pale);border-radius:8px;padding:12px;margin-top:10px;border-left:3px solid var(--amber);"><strong style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--amber);">Teacher's Feedback</strong><p style="margin-top:4px;font-size:13px;">${escHtml(sub.feedback)}</p></div>`:''}
+      </div>`;
+  });
+
+  document.getElementById('l-marks-content').innerHTML = html;
+}
+
+/* ════════════════════════════════════════════════════════
+   LONGHORN BOOKS
+════════════════════════════════════════════════════════ */
+function renderLonghornBooks() {
+  const colors = ['#1B5E3B','#1A6FA8','#7B2D8B','#2E7D32','#C17D11','#1565C0','#5D4037','#AD1457'];
+  document.getElementById('longhorn-books-grid').innerHTML = LONGHORN_BOOKS.map((b,i) => `
+    <div class="book-card">
+      <div class="book-spine" style="background:${colors[i%colors.length]}20;">${b.emoji}</div>
+      <div class="book-title">${b.title}</div>
+      <div class="book-sub">${b.grade} &bull; Longhorn</div>
+      <a href="https://longhornpublishers.com/books" target="_blank" class="btn btn-ghost btn-sm btn-full">View Book</a>
+    </div>`).join('');
+}
+
+/* ════════════════════════════════════════════════════════
+   UTILS
+════════════════════════════════════════════════════════ */
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function emptyState(title, text) {
+  return `<div class="empty-state"><div class="icon">📭</div><h3>${title}</h3><p>${text}</p></div>`;
+}
+
+function toast(msg, type='success') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = (type==='success'?'✅':type==='error'?'❌':'ℹ️') + ' ' + msg;
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transition='opacity 0.4s'; setTimeout(()=>t.remove(),400); }, 3500);
+}
+
+/* ════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  initDB();
+  // Enter key on login
+  document.getElementById('teacher-password').addEventListener('keydown', e=>{ if(e.key==='Enter') teacherLogin(); });
+  document.getElementById('learner-pin').addEventListener('keydown', e=>{ if(e.key==='Enter') learnerLogin(); });
+  // Add first question on load
+  addQuestion();
+});
+</script>
+</body>
+</html>
