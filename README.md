@@ -37,27 +37,7 @@ This project is built with modern web technologies:
 - A modern web browser (Chrome, Firefox, Safari, Edge)
 - No additional installations required
 
-### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Alpha791/Darasa-connect.git
-```
-
-2. Navigate to the project directory:
-```bash
-cd Darasa-connect
-```
-
-3. Open the application in your browser:
-```bash
-# Simply open index.html in your web browser
-# Or use a local server (recommended)
-python -m http.server 8000
-# Then visit http://localhost:8000
-```
-
-## 📁 Project Structure
 
 ```
 Darasa-connect/
@@ -86,18 +66,6 @@ Darasa-connect/
 
 Contributions are welcome! If you'd like to improve Darasa-connect:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 Guidelines
-
-- Follow the existing code style
-- Add comments for complex logic
-- Ensure responsive design compatibility
-- Test across different browsers
 
 ## 🐛 Bug Reports & Features
 
