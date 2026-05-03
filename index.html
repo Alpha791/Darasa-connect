@@ -71,7 +71,8 @@ body {
 }
 .login-pattern {
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
 }
 
 .login-card {
@@ -298,6 +299,36 @@ body {
 .stat-value { font-family: var(--font); font-size: 28px; font-weight: 800; color: var(--text); }
 .stat-label { font-size: 12px; color: var(--text-3); font-weight: 600; margin-top: 2px; }
 
+/* ── DOMINANT VIEWER SECTION ── */
+.dominant-viewer {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  border-radius: var(--radius); padding: 28px;
+  margin-bottom: 28px; color: #fff;
+  box-shadow: 0 8px 32px rgba(27,94,59,0.2);
+}
+.dominant-viewer h2 {
+  font-family: var(--font); font-size: 22px; font-weight: 800;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.dominant-viewer-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
+}
+.dominant-stat {
+  background: rgba(255,255,255,0.15); border-radius: 12px; padding: 16px;
+  border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+}
+.dominant-stat .label {
+  font-size: 12px; font-weight: 700; opacity: 0.85; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 8px;
+}
+.dominant-stat .value {
+  font-family: var(--font); font-size: 32px; font-weight: 800;
+  margin-bottom: 4px;
+}
+.dominant-stat .desc {
+  font-size: 12px; opacity: 0.75;
+}
+
 /* ── SUBJECT CHIPS ── */
 .subject-bar {
   display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
@@ -517,6 +548,7 @@ body {
   .main-content { padding: 16px; }
   .topbar { padding: 0 16px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .dominant-viewer-grid { grid-template-columns: repeat(2, 1fr); }
   .modal { margin: 0; border-radius: 20px 20px 0 0; max-height: 92vh; align-self: flex-end; }
   .modal-overlay { align-items: flex-end; padding: 0; }
   .login-card { padding: 32px 24px; }
@@ -590,7 +622,7 @@ body {
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════ LOGIN ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ LOGIN ════════════════════════════════════════ -->
 <div id="view-login" class="view active">
   <div class="login-pattern"></div>
   <div class="login-card">
@@ -645,7 +677,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ APP ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ APP ════════════════════════════════════════ -->
 <div id="view-app" class="view">
   <!-- TOPBAR -->
   <header class="topbar">
@@ -685,6 +717,7 @@ body {
             <p>Manage homework, track submissions, and mark learner work.</p>
           </div>
         </div>
+        <div class="dominant-viewer" id="t-dominant-viewer"></div>
         <div class="stats-grid" id="t-stats-grid"></div>
         <h3 style="font-family:var(--font);font-weight:800;margin-bottom:14px;">Recent Homework</h3>
         <div id="t-recent-hw"></div>
@@ -779,7 +812,7 @@ body {
         <div class="divider"></div>
         <div style="background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
           <h3 style="font-family:var(--font);font-weight:800;margin-bottom:8px;">About Longhorn Publishers</h3>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Longhorn Publishers Limited is Kenya's leading educational publisher, providing textbooks, learning materials, and digital resources aligned to the Competency Based Curriculum (CBC) for Grade 1–9. Their books are approved by the Kenya Institute of Curriculum Development (KICD) and available at major bookstores across Kenya.</p>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Longhorn Publishers Limited is Kenya's leading educational publisher, providing textbooks, learning materials, and digital resources for CBC curriculum implementation.</p>
           <a href="https://longhornpublishers.com" target="_blank" class="btn btn-primary" style="margin-top:16px;">🌐 Visit Longhorn Website</a>
         </div>
       </div>
@@ -805,6 +838,7 @@ body {
             <p>View your homework assignments and submit your answers.</p>
           </div>
         </div>
+        <div class="dominant-viewer" id="l-dominant-viewer"></div>
         <div class="stats-grid" id="l-stats-grid"></div>
         <h3 style="font-family:var(--font);font-weight:800;margin-bottom:14px;">My Homework</h3>
         <div class="subject-bar" id="l-subj-filter"></div>
@@ -919,7 +953,7 @@ function initDB() {
 
 /* ════════════════════════════════════════════════════════
    AUTH
-════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════�� */
 let currentUser = null;
 
 function switchLoginTab(tab) {
@@ -998,99 +1032,297 @@ function renderSidebar(role) {
     { icon:'📋', label:'All Homework', page:'page-t-homework',  action: ()=>{ showPage('page-t-homework'); renderTeacherHomework(); } },
     { icon:'📈', label:'Progress',     page:'page-t-progress',  action: ()=>{ showPage('page-t-progress'); renderProgress(); } },
     { icon:'👥', label:'Learners',     page:'page-t-learners',  action: ()=>{ showPage('page-t-learners'); renderLearnersTable(); } },
-    { icon:'📗', label:'CBC Books',    page:'page-longhorn',    action: ()=>showPage('page-longhorn') },
+    { icon:'📗', label:'Longhorn',     page:'page-longhorn',    action: ()=>{ showPage('page-longhorn'); } },
   ] : [
-    { icon:'🏠', label:'Dashboard',    page:'page-l-dashboard', action: ()=>{ showPage('page-l-dashboard'); renderLearnerDashboard(); } },
-    { icon:'🏅', label:'My Marks',     page:'page-l-marks',     action: ()=>{ showPage('page-l-marks'); renderLearnerMarks(); } },
-    { icon:'📗', label:'CBC Books',    page:'page-longhorn',    action: ()=>showPage('page-longhorn') },
+    { icon:'📖', label:'Dashboard',    page:'page-l-dashboard', action: ()=>{ showPage('page-l-dashboard'); renderLearnerDashboard(); } },
+    { icon:'⭐', label:'My Marks',     page:'page-l-marks',     action: ()=>{ showPage('page-l-marks'); renderLearnerMarks(); } },
+    { icon:'📗', label:'Longhorn',     page:'page-longhorn',    action: ()=>{ showPage('page-longhorn'); } },
   ];
 
-  // FIXED: sanitize hyphens → underscores so function names are valid JS identifiers
-  items.forEach(i => {
-    const fn = 'nav_' + i.page.replace(/-/g, '_');
-    window[fn] = i.action;
+  const sidebar = document.getElementById('main-sidebar');
+  sidebar.innerHTML = '';
+  const sectionLabel = document.createElement('div');
+  sectionLabel.className = 'sidebar-section-label';
+  sectionLabel.textContent = 'Navigation';
+  sidebar.appendChild(sectionLabel);
+
+  items.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-item';
+    btn.innerHTML = `<span class="nav-icon">${item.icon}</span> <span>${item.label}</span>`;
+    btn.onclick = item.action;
+    sidebar.appendChild(btn);
   });
 
-  const sidebarHTML = '<div class="sidebar-section-label">Menu</div>' +
-    items.map(i => {
-      const fn = 'nav_' + i.page.replace(/-/g, '_');
-      return `<button class="nav-item" data-page="${i.page}" onclick="${fn}()"><span class="nav-icon">${i.icon}</span> ${i.label}</button>`;
-    }).join('');
-  document.getElementById('main-sidebar').innerHTML = sidebarHTML;
-
-  document.getElementById('mobile-nav').innerHTML = items.map(i => {
-    const fn = 'nav_' + i.page.replace(/-/g, '_');
-    return `<button class="nav-item" data-page="${i.page}" onclick="${fn}()"><span class="nav-icon">${i.icon}</span> ${i.label.split(' ')[0]}</button>`;
-  }).join('');
+  const mobileNav = document.getElementById('mobile-nav');
+  mobileNav.innerHTML = '';
+  items.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-item';
+    btn.innerHTML = `<span class="nav-icon">${item.icon}</span><span>${item.label}</span>`;
+    btn.onclick = item.action;
+    mobileNav.appendChild(btn);
+  });
 }
 
-function showPage(id) {
+function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === id));
-  window.scrollTo(0,0);
+  document.getElementById(pageId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItems = Array.from(document.querySelectorAll('.nav-item'));
+  const item = navItems.find(n => n.getAttribute('onclick')?.includes(pageId));
+  if (item) item.classList.add('active');
 }
 
 function goHome() {
-  if (!currentUser) return;
-  if (currentUser.role === 'teacher') { showPage('page-t-dashboard'); renderTeacherDashboard(); }
-  else { showPage('page-l-dashboard'); renderLearnerDashboard(); }
+  if (currentUser?.role === 'teacher') { renderTeacherDashboard(); showPage('page-t-dashboard'); }
+  else if (currentUser?.role === 'learner') { renderLearnerDashboard(); showPage('page-l-dashboard'); }
 }
 
 /* ════════════════════════════════════════════════════════
-   TEACHER DASHBOARD
+   RENDER: TEACHER DASHBOARD
 ════════════════════════════════════════════════════════ */
 function renderTeacherDashboard() {
   const hw = db('homework');
   const subs = db('submissions');
-  const hrs = new Date().getHours();
-  const greet = hrs < 12 ? 'Good morning' : hrs < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('t-welcome-msg').textContent = greet + ', Teacher! 👋';
+  const learners = db('learners');
 
-  const totalPending = subs.filter(s => !s.marked).length;
-  document.getElementById('t-stats-grid').innerHTML = `
-    <div class="stat-card"><div class="stat-icon green">📋</div><div><div class="stat-value">${hw.length}</div><div class="stat-label">Homework Posted</div></div></div>
-    <div class="stat-card"><div class="stat-icon sky">📤</div><div><div class="stat-value">${subs.length}</div><div class="stat-label">Total Submissions</div></div></div>
-    <div class="stat-card"><div class="stat-icon amber">⏳</div><div><div class="stat-value">${totalPending}</div><div class="stat-label">Pending Marking</div></div></div>
-    <div class="stat-card"><div class="stat-icon green">👥</div><div><div class="stat-value">30</div><div class="stat-label">Learners</div></div></div>
+  // Dominant Viewer
+  const domEl = document.getElementById('t-dominant-viewer');
+  const totalSub = subs.length;
+  const marked = subs.filter(s => s.marked === true).length;
+  const pending = totalSub - marked;
+  domEl.innerHTML = `
+    <h2>📊 Class Performance Overview</h2>
+    <div class="dominant-viewer-grid">
+      <div class="dominant-stat">
+        <div class="label">Total Assignments</div>
+        <div class="value">${hw.length}</div>
+        <div class="desc">Homework posted</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Total Submissions</div>
+        <div class="value">${totalSub}</div>
+        <div class="desc">From all learners</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Marked</div>
+        <div class="value">${marked}</div>
+        <div class="desc">Completed marking</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Pending</div>
+        <div class="value">${pending}</div>
+        <div class="desc">Awaiting marks</div>
+      </div>
+    </div>
   `;
 
-  const recent = [...hw].sort((a,b)=>b.createdAt-a.createdAt).slice(0,5);
-  document.getElementById('t-recent-hw').innerHTML = recent.length
-    ? recent.map(h => hwCardHTML(h, 'teacher')).join('')
-    : emptyState('No homework posted yet', 'Click "Post Homework" to create the first assignment.');
+  // Stats Grid
+  const statsEl = document.getElementById('t-stats-grid');
+  statsEl.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon green">👥</div>
+      <div>
+        <div class="stat-value">${learners.length}</div>
+        <div class="stat-label">Total Learners</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon amber">📚</div>
+      <div>
+        <div class="stat-value">${hw.length}</div>
+        <div class="stat-label">Active Homework</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon sky">✅</div>
+      <div>
+        <div class="stat-value">${marked}</div>
+        <div class="stat-label">Marked</div>
+      </div>
+    </div>
+  `;
+
+  // Recent HW
+  const recentEl = document.getElementById('t-recent-hw');
+  const recent = hw.slice(-3).reverse();
+  recentEl.innerHTML = recent.length > 0 ?
+    recent.map(h => `
+      <div class="hw-card" onclick="viewSubmissions('${h.id}')">
+        <div class="hw-card-header">
+          <div>
+            <div class="hw-card-title">${h.title}</div>
+            <div class="hw-card-meta">
+              <span class="tag tag-subject">${SUBJECTS.find(s => s.id === h.subject)?.emoji} ${SUBJECTS.find(s => s.id === h.subject)?.name}</span>
+              <span class="tag tag-date">📅 ${new Date(h.date).toLocaleDateString()}</span>
+            </div>
+          </div>
+        </div>
+        <div class="hw-card-body">${h.desc.substring(0, 80)}...</div>
+        <div class="hw-card-footer">
+          <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+          <span class="tag" style="background:var(--sky-pale);color:var(--sky);">📤 ${subs.filter(s => s.hwId === h.id).length} submissions</span>
+        </div>
+      </div>
+    `).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No homework yet</h3><p>Create your first assignment!</p></div>';
 }
 
 /* ════════════════════════════════════════════════════════
-   POST HOMEWORK
+   RENDER: LEARNER DASHBOARD
 ════════════════════════════════════════════════════════ */
-let qCount = 0;
+function renderLearnerDashboard() {
+  const hw = db('homework');
+  const subs = db('submissions');
+  const learnerSubs = subs.filter(s => s.learnerId === currentUser.id);
+
+  // Dominant Viewer
+  const domEl = document.getElementById('l-dominant-viewer');
+  const submitted = learnerSubs.filter(s => s.submitted === true).length;
+  const marked = learnerSubs.filter(s => s.marked === true).length;
+  domEl.innerHTML = `
+    <h2>📚 My Learning Progress</h2>
+    <div class="dominant-viewer-grid">
+      <div class="dominant-stat">
+        <div class="label">My Homework</div>
+        <div class="value">${hw.length}</div>
+        <div class="desc">Available</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Submitted</div>
+        <div class="value">${submitted}</div>
+        <div class="desc">Completed</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Marked</div>
+        <div class="value">${marked}</div>
+        <div class="desc">With feedback</div>
+      </div>
+      <div class="dominant-stat">
+        <div class="label">Pending</div>
+        <div class="value">${hw.length - submitted}</div>
+        <div class="desc">To submit</div>
+      </div>
+    </div>
+  `;
+
+  // Stats Grid
+  const statsEl = document.getElementById('l-stats-grid');
+  statsEl.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon amber">📚</div>
+      <div>
+        <div class="stat-value">${hw.length}</div>
+        <div class="stat-label">My Assignments</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon sky">📤</div>
+      <div>
+        <div class="stat-value">${submitted}</div>
+        <div class="stat-label">Submitted</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">✅</div>
+      <div>
+        <div class="stat-value">${marked}</div>
+        <div class="stat-label">Marked</div>
+      </div>
+    </div>
+  `;
+
+  // HW List
+  const hwEl = document.getElementById('l-hw-list');
+  hwEl.innerHTML = hw.length > 0 ?
+    hw.map(h => {
+      const sub = learnerSubs.find(s => s.hwId === h.id);
+      const status = sub ? (sub.marked ? '✅ Marked' : '⏳ Submitted') : '⏸️ Not Submitted';
+      return `
+        <div class="hw-card" onclick="learnerSubmitHw('${h.id}')">
+          <div class="hw-card-header">
+            <div>
+              <div class="hw-card-title">${h.title}</div>
+              <div class="hw-card-meta">
+                <span class="tag tag-subject">${SUBJECTS.find(s => s.id === h.subject)?.emoji} ${SUBJECTS.find(s => s.id === h.subject)?.name}</span>
+              </div>
+            </div>
+            <span class="tag ${sub?.marked ? 'tag-marked' : sub ? 'tag-submitted' : 'tag-pending'}">${status}</span>
+          </div>
+          <div class="hw-card-body">${h.desc.substring(0, 80)}...</div>
+          <div class="hw-card-footer">
+            <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+            <span class="tag tag-due">📅 Due: ${new Date(h.due).toLocaleDateString()}</span>
+          </div>
+        </div>
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No assignments</h3><p>Check back soon!</p></div>';
+
+  // Subject filter
+  const filterEl = document.getElementById('l-subj-filter');
+  filterEl.innerHTML = '<div class="subject-chip active" onclick="filterLearnerHw(null)">📋 All</div>' +
+    SUBJECTS.map(s => `<div class="subject-chip" onclick="filterLearnerHw('${s.id}')">${s.emoji} ${s.name}</div>`).join('');
+}
+
+function filterLearnerHw(subj) {
+  const hw = subj ? db('homework').filter(h => h.subject === subj) : db('homework');
+  const subs = db('submissions');
+  const learnerSubs = subs.filter(s => s.learnerId === currentUser.id);
+  
+  const hwEl = document.getElementById('l-hw-list');
+  hwEl.innerHTML = hw.length > 0 ?
+    hw.map(h => {
+      const sub = learnerSubs.find(s => s.hwId === h.id);
+      const status = sub ? (sub.marked ? '✅ Marked' : '⏳ Submitted') : '⏸️ Not Submitted';
+      return `
+        <div class="hw-card" onclick="learnerSubmitHw('${h.id}')">
+          <div class="hw-card-header">
+            <div>
+              <div class="hw-card-title">${h.title}</div>
+              <div class="hw-card-meta">
+                <span class="tag tag-subject">${SUBJECTS.find(s => s.id === h.subject)?.emoji} ${SUBJECTS.find(s => s.id === h.subject)?.name}</span>
+              </div>
+            </div>
+            <span class="tag ${sub?.marked ? 'tag-marked' : sub ? 'tag-submitted' : 'tag-pending'}">${status}</span>
+          </div>
+          <div class="hw-card-body">${h.desc.substring(0, 80)}...</div>
+          <div class="hw-card-footer">
+            <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+            <span class="tag tag-due">📅 Due: ${new Date(h.due).toLocaleDateString()}</span>
+          </div>
+        </div>
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No assignments</h3></div>';
+
+  document.querySelectorAll('.subject-chip').forEach((c, i) => {
+    c.classList.toggle('active', (subj === null && i === 0) || (i > 0 && SUBJECTS[i-1]?.id === subj));
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   TEACHER: POST, VIEW, MARK HOMEWORK
+════════════════════════════════════════════════════════ */
+let questionCount = 0;
+
 function resetPostForm() {
-  document.getElementById('hw-subject').value = '';
   document.getElementById('hw-title').value = '';
   document.getElementById('hw-desc').value = '';
-  const d = new Date(); d.setDate(d.getDate() + 7);
-  document.getElementById('hw-due').value = d.toISOString().split('T')[0];
-  qCount = 0;
+  document.getElementById('hw-subject').value = '';
   document.getElementById('question-builder').innerHTML = '';
-  addQuestion();
+  questionCount = 0;
 }
 
 function addQuestion() {
-  qCount++;
-  const n = qCount;
-  const div = document.createElement('div');
-  div.className = 'question-item'; div.id = 'q-' + n;
-  div.innerHTML = `
-    <div class="q-num">Question ${n}</div>
-    <textarea placeholder="Type question ${n} here..." id="q-text-${n}"></textarea>
-    ${n > 1 ? `<button class="remove-q" onclick="removeQuestion(${n})" title="Remove">✕</button>` : ''}
+  questionCount++;
+  const qb = document.getElementById('question-builder');
+  const qi = document.createElement('div');
+  qi.className = 'question-item';
+  qi.innerHTML = `
+    <div class="q-num">Question ${questionCount}</div>
+    <textarea data-q-index="${questionCount - 1}" placeholder="Enter question text..."></textarea>
+    <button class="remove-q" onclick="this.parentElement.remove()">✕</button>
   `;
-  document.getElementById('question-builder').appendChild(div);
-}
-
-function removeQuestion(n) {
-  document.getElementById('q-' + n).remove();
+  qb.appendChild(qi);
 }
 
 function postHomework() {
@@ -1098,515 +1330,377 @@ function postHomework() {
   const title = document.getElementById('hw-title').value.trim();
   const desc = document.getElementById('hw-desc').value.trim();
   const due = document.getElementById('hw-due').value;
-  if (!subject) { toast('Please select a subject', 'error'); return; }
-  if (!title) { toast('Please enter a homework title', 'error'); return; }
+  const questions = Array.from(document.querySelectorAll('.question-item textarea')).map(t => t.value.trim()).filter(t => t);
 
-  // Gather questions
-  const questions = [];
-  document.querySelectorAll('[id^="q-text-"]').forEach(el => {
-    const text = el.value.trim();
-    if (text) questions.push({ id: 'q' + Date.now() + Math.random().toString(36).slice(2,5), text });
-  });
-  if (questions.length === 0) { toast('Add at least one question', 'error'); return; }
+  if (!subject || !title || !desc || !due || questions.length === 0) {
+    alert('Please fill all fields and add at least one question');
+    return;
+  }
 
-  const hw = db('homework');
-  hw.push({
-    id: 'hw' + Date.now(),
-    subject, title, desc, due, questions,
-    createdAt: Date.now()
-  });
-  db('homework', hw);
-  toast('Homework posted successfully! 🎉', 'success');
+  const hw = {
+    id: 'hw_' + Date.now(),
+    subject, title, desc, due,
+    date: new Date().toISOString(),
+    questions
+  };
+
+  const hws = db('homework');
+  hws.push(hw);
+  db('homework', hws);
+  
+  toast('✅ Homework posted successfully!', 'success');
   resetPostForm();
   showPage('page-t-homework');
   renderTeacherHomework();
 }
 
-/* ════════════════════════════════════════════════════════
-   TEACHER ALL HOMEWORK
-════════════════════════════════════════════════════════ */
-let tHwFilter = 'all';
 function renderTeacherHomework() {
   const hw = db('homework');
-  const bar = document.getElementById('t-hw-subject-filter');
-  bar.innerHTML = chipHTML('all', '📋 All', tHwFilter === 'all', () => { tHwFilter='all'; renderTeacherHomework(); });
-  SUBJECTS.forEach(s => {
-    if (hw.some(h => h.subject === s.id))
-      bar.innerHTML += chipHTML(s.id, s.emoji+' '+s.name, tHwFilter===s.id, ()=>{ tHwFilter=s.id; renderTeacherHomework(); });
-  });
+  const subs = db('submissions');
 
-  const filtered = tHwFilter === 'all' ? hw : hw.filter(h => h.subject === tHwFilter);
-  const sorted = [...filtered].sort((a,b)=>b.createdAt-a.createdAt);
-  document.getElementById('t-hw-list').innerHTML = sorted.length
-    ? sorted.map(h => hwCardHTML(h, 'teacher')).join('')
-    : emptyState('No homework in this subject yet', 'Try posting some or selecting a different filter.');
-}
+  const filterEl = document.getElementById('t-hw-subject-filter');
+  filterEl.innerHTML = '<div class="subject-chip active" onclick="filterTeacherHw(null)">📋 All</div>' +
+    SUBJECTS.map(s => `<div class="subject-chip" onclick="filterTeacherHw('${s.id}')">${s.emoji} ${s.name}</div>`).join('');
 
-function chipHTML(id, label, active, fn) {
-  const fnName = 'chip_' + id.replace(/[^a-z0-9]/gi,'_');
-  window[fnName] = fn;
-  return `<button class="subject-chip ${active?'active':''}" onclick="${fnName}()">${label}</button>`;
-}
-
-/* ════════════════════════════════════════════════════════
-   HOMEWORK CARD
-════════════════════════════════════════════════════════ */
-function hwCardHTML(h, viewAs) {
-  const subs = db('submissions').filter(s => s.homeworkId === h.id);
-  const subj = SUBJECTS.find(s => s.id === h.subject) || {};
-  const dateStr = new Date(h.createdAt).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'});
-  const due = h.due ? new Date(h.due).toLocaleDateString('en-KE',{day:'numeric',month:'short'}) : '';
-  const markedCount = subs.filter(s=>s.marked).length;
-  let footerHTML = '';
-  let clickFn = '';
-
-  if (viewAs === 'teacher') {
-    footerHTML = `
-      <span class="tag tag-subject">${subj.emoji||''} ${subj.name||h.subject}</span>
-      <span class="tag tag-date">📅 ${dateStr}</span>
-      ${due?`<span class="tag tag-due">⏰ Due: ${due}</span>`:''}
-      <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
-      <span class="tag tag-submitted">📤 ${subs.length}/30 submitted</span>
-      ${markedCount>0?`<span class="tag tag-marked">✅ ${markedCount} marked</span>`:''}
-    `;
-    const fnName = 'viewSubs_'+h.id;
-    window[fnName] = ()=>viewSubmissions(h.id);
-    clickFn = fnName+'()';
-  } else {
-    // Learner view
-    const mySub = db('submissions').find(s=>s.homeworkId===h.id && s.learnerId===currentUser.id);
-    const status = mySub ? (mySub.marked?'✅ Marked':'📤 Submitted') : '⏳ Pending';
-    const tagClass = mySub ? (mySub.marked?'tag-marked':'tag-submitted') : 'tag-pending';
-    footerHTML = `
-      <span class="tag tag-subject">${subj.emoji||''} ${subj.name||h.subject}</span>
-      <span class="tag tag-date">📅 ${dateStr}</span>
-      ${due?`<span class="tag tag-due">⏰ Due: ${due}</span>`:''}
-      <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
-      <span class="tag ${tagClass}">${status}</span>
-    `;
-    const fnName = 'openHW_'+h.id;
-    window[fnName] = ()=>openLearnerHomework(h.id);
-    clickFn = fnName+'()';
-  }
-
-  return `
-    <div class="hw-card" onclick="${clickFn}">
-      <div class="hw-card-header">
-        <div>
-          <div class="hw-card-title">${escHtml(h.title)}</div>
+  const hwEl = document.getElementById('t-hw-list');
+  hwEl.innerHTML = hw.length > 0 ?
+    hw.map(h => {
+      const count = subs.filter(s => s.hwId === h.id).length;
+      return `
+        <div class="hw-card" onclick="viewSubmissions('${h.id}')">
+          <div class="hw-card-header">
+            <div>
+              <div class="hw-card-title">${h.title}</div>
+              <div class="hw-card-meta">
+                <span class="tag tag-subject">${SUBJECTS.find(s => s.id === h.subject)?.emoji} ${SUBJECTS.find(s => s.id === h.subject)?.name}</span>
+                <span class="tag tag-date">📅 ${new Date(h.date).toLocaleDateString()}</span>
+              </div>
+            </div>
+          </div>
+          <div class="hw-card-body">${h.desc.substring(0, 80)}...</div>
+          <div class="hw-card-footer">
+            <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+            <span class="tag" style="background:var(--sky-pale);color:var(--sky);">📤 ${count} submissions</span>
+          </div>
         </div>
-      </div>
-      ${h.desc?`<div class="hw-card-body">${escHtml(h.desc)}</div>`:''}
-      <div class="hw-card-footer">${footerHTML}</div>
-      ${viewAs==='teacher'?`<div style="margin-top:12px;"><button class="btn btn-primary btn-sm" onclick="event.stopPropagation();viewSubmissions('${h.id}')">View Submissions (${subs.length})</button> <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();deleteHomework('${h.id}')" style="margin-left:6px;">🗑️ Delete</button></div>`:''}
-    </div>`;
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No homework yet</h3></div>';
 }
 
-function deleteHomework(id) {
-  if (!confirm('Delete this homework and all its submissions?')) return;
-  db('homework', db('homework').filter(h=>h.id!==id));
-  db('submissions', db('submissions').filter(s=>s.homeworkId!==id));
-  toast('Homework deleted', 'success');
-  renderTeacherHomework();
+function filterTeacherHw(subj) {
+  const hw = subj ? db('homework').filter(h => h.subject === subj) : db('homework');
+  const subs = db('submissions');
+
+  const hwEl = document.getElementById('t-hw-list');
+  hwEl.innerHTML = hw.length > 0 ?
+    hw.map(h => {
+      const count = subs.filter(s => s.hwId === h.id).length;
+      return `
+        <div class="hw-card" onclick="viewSubmissions('${h.id}')">
+          <div class="hw-card-header">
+            <div>
+              <div class="hw-card-title">${h.title}</div>
+              <div class="hw-card-meta">
+                <span class="tag tag-subject">${SUBJECTS.find(s => s.id === h.subject)?.emoji} ${SUBJECTS.find(s => s.id === h.subject)?.name}</span>
+              </div>
+            </div>
+          </div>
+          <div class="hw-card-body">${h.desc.substring(0, 80)}...</div>
+          <div class="hw-card-footer">
+            <span class="tag tag-questions">❓ ${h.questions.length} questions</span>
+            <span class="tag" style="background:var(--sky-pale);color:var(--sky);">📤 ${count} submissions</span>
+          </div>
+        </div>
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No assignments</h3></div>';
+
+  document.querySelectorAll('.subject-chip').forEach((c, i) => {
+    c.classList.toggle('active', (subj === null && i === 0) || (i > 0 && SUBJECTS[i-1]?.id === subj));
+  });
 }
 
-/* ════════════════════════════════════════════════════════
-   VIEW SUBMISSIONS (Teacher)
-════════════════════════════════════════════════════════ */
+let viewingHwId = null;
+
 function viewSubmissions(hwId) {
-  const hw = db('homework').find(h=>h.id===hwId);
-  if (!hw) return;
-  const subs = db('submissions').filter(s=>s.homeworkId===hwId);
+  viewingHwId = hwId;
+  const hw = db('homework').find(h => h.id === hwId);
+  const subs = db('submissions').filter(s => s.hwId === hwId);
   const learners = db('learners');
-  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
 
   document.getElementById('t-sub-title').textContent = hw.title;
-  document.getElementById('t-sub-meta').textContent = `${subj.emoji||''} ${subj.name||hw.subject} · ${subs.length} of 30 submitted`;
+  document.getElementById('t-sub-meta').textContent = `${subs.length} submission${subs.length !== 1 ? 's' : ''}`;
 
-  // Build submission list (all 30 learners)
-  let html = '';
-  learners.forEach(l => {
-    const sub = subs.find(s=>s.learnerId===l.id);
-    if (sub) {
-      const markLabel = sub.marked ? `✅ Marked` : `⏳ Not marked yet`;
-      const markColor = sub.marked ? 'var(--green)' : 'var(--amber)';
-      html += `
-        <div class="submission-row">
+  const subEl = document.getElementById('t-sub-list');
+  subEl.innerHTML = subs.length > 0 ?
+    subs.map(s => {
+      const learner = learners.find(l => l.id === s.learnerId);
+      const status = s.marked ? '✅ Marked' : '⏳ Pending';
+      return `
+        <div class="submission-row" onclick="markSubmission('${s.id}')">
           <div>
-            <div class="learner-name">${escHtml(l.name)}</div>
-            <div class="sub-meta">Submitted: ${new Date(sub.submittedAt).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})} &bull; <span style="color:${markColor};font-weight:700;">${markLabel}</span></div>
+            <div class="learner-name">${learner?.name || 'Unknown'}</div>
+            <div class="sub-meta">Submitted: ${new Date(s.submittedAt).toLocaleDateString()}</div>
           </div>
-          <button class="btn btn-primary btn-sm" onclick="openMarkPage('${hwId}','${sub.id}')">✏️ Mark</button>
-        </div>`;
-    } else {
-      html += `
-        <div class="submission-row" style="opacity:0.6;">
-          <div>
-            <div class="learner-name">${escHtml(l.name)}</div>
-            <div class="sub-meta" style="color:var(--red);">Not submitted yet</div>
-          </div>
-          <span class="tag tag-pending">Pending</span>
-        </div>`;
-    }
-  });
+          <span class="tag ${s.marked ? 'tag-marked' : 'tag-pending'}">${status}</span>
+        </div>
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No submissions</h3></div>';
 
-  document.getElementById('t-sub-list').innerHTML = html || emptyState('No submissions yet','Learners have not submitted answers for this homework.');
-  document.getElementById('t-mark-back-btn').onclick = ()=>viewSubmissions(hwId);
   showPage('page-t-submissions');
 }
 
-/* ════════════════════════════════════════════════════════
-   MARKING PAGE (Teacher)
-════════════════════════════════════════════════════════ */
-let _markingHwId = null, _markingSubId = null;
+let markingSubId = null;
 
-function openMarkPage(hwId, subId) {
-  _markingHwId = hwId; _markingSubId = subId;
-  const hw = db('homework').find(h=>h.id===hwId);
-  const subs = db('submissions');
-  const sub = subs.find(s=>s.id===subId);
-  const learner = db('learners').find(l=>l.id===sub.learnerId);
-  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
+function markSubmission(subId) {
+  markingSubId = subId;
+  const hw = db('homework').find(h => h.id === viewingHwId);
+  const sub = db('submissions').find(s => s.id === subId);
+  const learner = db('learners').find(l => l.id === sub.learnerId);
 
-  document.getElementById('t-mark-title').textContent = `Marking: ${learner.name}`;
-  document.getElementById('t-mark-meta').textContent = `${hw.title} · ${subj.emoji} ${subj.name}`;
+  document.getElementById('t-mark-title').textContent = `Mark: ${hw.title}`;
+  document.getElementById('t-mark-meta').textContent = `${learner.name}`;
+  document.getElementById('t-mark-back-btn').onclick = () => viewSubmissions(viewingHwId);
 
-  let html = '';
-  hw.questions.forEach((q, i) => {
-    const ans = (sub.answers||{})[q.id] || '<em style="color:var(--text-3);">No answer provided</em>';
-    const currentMark = (sub.marks||{})[q.id] || null;
-    html += `
+  const mc = document.getElementById('t-mark-content');
+  mc.innerHTML = hw.questions.map((q, i) => {
+    const ans = sub.answers[i] || '';
+    const mark = sub.marks?.[i];
+    return `
       <div class="submission-answer-block">
-        <div class="q-num-label" style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--green);margin-bottom:6px;">Question ${i+1}</div>
-        <div style="font-weight:700;color:var(--text);margin-bottom:8px;">${escHtml(q.text)}</div>
-        <div class="learner-answer-text">${escHtml((sub.answers||{})[q.id]||'') || '<em>No answer</em>'}</div>
+        <div class="q-num-label">Question ${i + 1}</div>
+        <div class="q-text">${q}</div>
+        <div class="learner-answer-text">${ans}</div>
         <div class="mark-buttons">
-          <button class="mark-btn correct ${currentMark==='correct'?'selected':''}" onclick="setMark('${q.id}','correct',this)">✅ Correct</button>
-          <button class="mark-btn partial ${currentMark==='partial'?'selected':''}" onclick="setMark('${q.id}','partial',this)">🟡 Partial</button>
-          <button class="mark-btn wrong ${currentMark==='wrong'?'selected':''}" onclick="setMark('${q.id}','wrong',this)">❌ Wrong</button>
+          <button class="mark-btn correct ${mark === 'correct' ? 'selected' : ''}" onclick="setMark(${i}, 'correct')">✅ Correct</button>
+          <button class="mark-btn partial ${mark === 'partial' ? 'selected' : ''}" onclick="setMark(${i}, 'partial')">⚠️ Partial</button>
+          <button class="mark-btn wrong ${mark === 'wrong' ? 'selected' : ''}" onclick="setMark(${i}, 'wrong')">❌ Wrong</button>
         </div>
-      </div>`;
-  });
+      </div>
+    `;
+  }).join('');
 
-  const feedback = sub.feedback||'';
-  html += `
-    <div style="background:var(--white);border-radius:var(--radius);padding:20px;border:1px solid var(--border);">
-      <label style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);display:block;margin-bottom:8px;">Teacher's Feedback (Optional)</label>
-      <textarea class="feedback-area" id="teacher-feedback" placeholder="Write overall feedback for this learner...">${escHtml(feedback)}</textarea>
-    </div>`;
-
-  document.getElementById('t-mark-content').innerHTML = html;
   showPage('page-t-mark');
 }
 
-// Store temp marks in DOM
-const tempMarks = {};
-function setMark(qId, mark, btn) {
-  tempMarks[qId] = mark;
-  const parent = btn.closest('.mark-buttons');
-  parent.querySelectorAll('.mark-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+let tempMarks = {};
+
+function setMark(qIndex, mark) {
+  tempMarks[qIndex] = mark;
+  document.querySelectorAll(`.mark-btn`).forEach(btn => btn.classList.remove('selected'));
+  event.target.closest('.mark-btn').classList.add('selected');
 }
 
 function saveMarks() {
   const subs = db('submissions');
-  const idx = subs.findIndex(s=>s.id===_markingSubId);
-  if (idx<0) return;
-  // Merge tempMarks with existing
-  subs[idx].marks = Object.assign(subs[idx].marks||{}, tempMarks);
-  subs[idx].feedback = document.getElementById('teacher-feedback').value;
-  subs[idx].marked = true;
+  const sub = subs.find(s => s.id === markingSubId);
+  sub.marks = tempMarks;
+  sub.marked = true;
   db('submissions', subs);
-  // Clear temp marks
-  Object.keys(tempMarks).forEach(k=>delete tempMarks[k]);
-  toast('Marks saved! ✅', 'success');
-  viewSubmissions(_markingHwId);
+  
+  toast('✅ Marks saved!', 'success');
+  tempMarks = {};
+  viewSubmissions(viewingHwId);
+  showPage('page-t-submissions');
 }
 
 /* ════════════════════════════════════════════════════════
-   PROGRESS (Teacher)
+   LEARNER: SUBMIT HOMEWORK
 ════════════════════════════════════════════════════════ */
-function renderProgress() {
-  const learners = db('learners');
+let submittingHwId = null;
+
+function learnerSubmitHw(hwId) {
+  submittingHwId = hwId;
+  const hw = db('homework').find(h => h.id === hwId);
   const subs = db('submissions');
-  const hw = db('homework');
-
-  let tableHTML = `
-    <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;">
-    <table class="data-table">
-      <thead><tr>
-        <th>#</th><th>Learner Name</th><th>Submitted</th><th>Marked</th><th>Correct</th><th>Partial</th><th>Wrong</th>
-      </tr></thead><tbody>`;
-
-  learners.forEach((l,i)=>{
-    const mySubs = subs.filter(s=>s.learnerId===l.id);
-    const marked = mySubs.filter(s=>s.marked);
-    let correct=0, partial=0, wrong=0;
-    marked.forEach(s=>{
-      Object.values(s.marks||{}).forEach(m=>{
-        if(m==='correct') correct++;
-        else if(m==='partial') partial++;
-        else if(m==='wrong') wrong++;
-      });
-    });
-    tableHTML += `<tr>
-      <td style="color:var(--text-3);font-size:12px;">${i+1}</td>
-      <td style="font-weight:700;">${escHtml(l.name)}</td>
-      <td>${mySubs.length}</td>
-      <td>${marked.length}</td>
-      <td style="color:var(--green);font-weight:700;">${correct}</td>
-      <td style="color:var(--amber);font-weight:700;">${partial}</td>
-      <td style="color:var(--red);font-weight:700;">${wrong}</td>
-    </tr>`;
-  });
-  tableHTML += '</tbody></table></div>';
-  document.getElementById('t-progress-content').innerHTML = tableHTML;
-}
-
-/* ════════════════════════════════════════════════════════
-   LEARNERS TABLE
-════════════════════════════════════════════════════════ */
-function renderLearnersTable() {
-  const learners = db('learners');
-  document.getElementById('learners-table').innerHTML = `
-    <thead><tr><th>#</th><th>Name</th><th>Learner ID</th><th>PIN</th></tr></thead>
-    <tbody>${learners.map((l,i)=>`
-      <tr>
-        <td style="color:var(--text-3);font-size:12px;">${i+1}</td>
-        <td style="font-weight:700;">${escHtml(l.name)}</td>
-        <td><code style="background:var(--sand);padding:2px 8px;border-radius:4px;font-size:12px;">${l.id}</code></td>
-        <td><code style="background:var(--green-pale);color:var(--green);padding:2px 8px;border-radius:4px;font-size:13px;font-weight:700;">${l.pin}</code></td>
-      </tr>`).join('')}
-    </tbody>`;
-}
-
-/* ════════════════════════════════════════════════════════
-   LEARNER DASHBOARD
-════════════════════════════════════════════════════════ */
-let lHwFilter = 'all';
-function renderLearnerDashboard() {
-  const hrs = new Date().getHours();
-  const greet = hrs < 12 ? 'Good morning' : hrs < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('l-welcome-msg').textContent = greet + ', ' + (currentUser.name.split(' ')[0]) + '! 📖';
-
-  const hw = db('homework');
-  const mySubs = db('submissions').filter(s=>s.learnerId===currentUser.id);
-  const pending = hw.filter(h=>!mySubs.find(s=>s.homeworkId===h.id));
-  const marked = mySubs.filter(s=>s.marked);
-
-  document.getElementById('l-stats-grid').innerHTML = `
-    <div class="stat-card"><div class="stat-icon sky">📋</div><div><div class="stat-value">${hw.length}</div><div class="stat-label">Total Homework</div></div></div>
-    <div class="stat-card"><div class="stat-icon green">📤</div><div><div class="stat-value">${mySubs.length}</div><div class="stat-label">Submitted</div></div></div>
-    <div class="stat-card"><div class="stat-icon amber">⏳</div><div><div class="stat-value">${pending.length}</div><div class="stat-label">Still Pending</div></div></div>
-    <div class="stat-card"><div class="stat-icon green">✅</div><div><div class="stat-value">${marked.length}</div><div class="stat-label">Marked</div></div></div>
-  `;
-
-  // Subject filter
-  const bar = document.getElementById('l-subj-filter');
-  bar.innerHTML = chipHTML('l_all', '📋 All', lHwFilter==='all', ()=>{ lHwFilter='all'; renderLearnerDashboard(); });
-  SUBJECTS.forEach(s => {
-    if (hw.some(h=>h.subject===s.id))
-      bar.innerHTML += chipHTML('l_'+s.id, s.emoji+' '+s.name, lHwFilter===s.id, ()=>{ lHwFilter=s.id; renderLearnerDashboard(); });
-  });
-
-  const filtered = lHwFilter==='all' ? hw : hw.filter(h=>h.subject===lHwFilter);
-  const sorted = [...filtered].sort((a,b)=>b.createdAt-a.createdAt);
-  document.getElementById('l-hw-list').innerHTML = sorted.length
-    ? sorted.map(h=>hwCardHTML(h,'learner')).join('')
-    : emptyState('No homework yet','Your teacher has not posted any assignments yet. Check back soon!');
-}
-
-/* ════════════════════════════════════════════════════════
-   LEARNER SUBMIT HOMEWORK
-════════════════════════════════════════════════════════ */
-let _currentHwId = null;
-function openLearnerHomework(hwId) {
-  _currentHwId = hwId;
-  const hw = db('homework').find(h=>h.id===hwId);
-  if (!hw) return;
-  const subj = SUBJECTS.find(s=>s.id===hw.subject)||{};
-  const existingSub = db('submissions').find(s=>s.homeworkId===hwId && s.learnerId===currentUser.id);
+  const existingSub = subs.find(s => s.hwId === hwId && s.learnerId === currentUser.id);
 
   document.getElementById('l-submit-title').textContent = hw.title;
-  document.getElementById('l-submit-meta').textContent = `${subj.emoji} ${subj.name} · ${hw.questions.length} questions`;
+  document.getElementById('l-submit-meta').textContent = hw.desc;
 
-  let html = '';
-  if (hw.desc) {
-    html += `<div class="notice info">📌 <span>${escHtml(hw.desc)}</span></div>`;
-  }
+  const sc = document.getElementById('l-submit-content');
+  sc.innerHTML = hw.questions.map((q, i) => `
+    <div class="answer-block">
+      <div class="q-num-label">Question ${i + 1}</div>
+      <div class="q-text">${q}</div>
+      <textarea class="answer-input" data-q-index="${i}" placeholder="Write your answer here...">${existingSub?.answers[i] || ''}</textarea>
+    </div>
+  `).join('');
 
-  const isSubmitted = !!existingSub;
-  const isMarked = existingSub?.marked;
-
-  if (isSubmitted) {
-    html += `<div class="notice ${isMarked?'success':'warn'}">${isMarked?'✅ This homework has been marked by your teacher. See your marks below.':'📤 You have already submitted this homework. Awaiting teacher marking.'}</div>`;
-  }
-
-  hw.questions.forEach((q, i) => {
-    const existingAnswer = (existingSub?.answers||{})[q.id] || '';
-    const mark = (existingSub?.marks||{})[q.id];
-    const markIcon = mark==='correct'?'✅':mark==='partial'?'🟡':mark==='wrong'?'❌':'';
-
-    html += `
-      <div class="answer-block">
-        <div class="q-num-label">Question ${i+1}</div>
-        <div class="q-text">${escHtml(q.text)}</div>
-        ${isSubmitted ? `
-          <div style="background:var(--sky-pale);border-radius:8px;padding:12px;font-size:14px;border-left:3px solid var(--sky);">
-            ${escHtml(existingAnswer)||'<em style="color:var(--text-3);">No answer submitted</em>'}
-          </div>
-          ${isMarked ? `<div style="margin-top:10px;font-size:14px;font-weight:700;color:${mark==='correct'?'var(--green)':mark==='wrong'?'var(--red)':'var(--amber)'};">${markIcon} ${mark ? mark.charAt(0).toUpperCase()+mark.slice(1) : ''}</div>` : ''}
-        ` : `<textarea placeholder="Write your answer here..." id="ans-${q.id}">${escHtml(existingAnswer)}</textarea>`}
-      </div>`;
-  });
-
-  if (isSubmitted && existingSub.feedback) {
-    html += `<div style="background:var(--amber-pale);border-radius:var(--radius);padding:18px;border-left:4px solid var(--amber);margin-bottom:14px;"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--amber);">Teacher's Feedback</strong><p style="margin-top:6px;font-size:14px;color:var(--text);">${escHtml(existingSub.feedback)}</p></div>`;
-  }
-
-  document.getElementById('l-submit-content').innerHTML = html;
-  document.getElementById('submit-answers-btn').style.display = isSubmitted ? 'none' : '';
   showPage('page-l-submit');
 }
 
 function submitAnswers() {
-  const hw = db('homework').find(h=>h.id===_currentHwId);
-  if (!hw) return;
+  const answers = Array.from(document.querySelectorAll('.answer-input')).map(ta => ta.value.trim());
+  const subs = db('submissions');
+  const existing = subs.find(s => s.hwId === submittingHwId && s.learnerId === currentUser.id);
 
-  const answers = {};
-  let allAnswered = true;
-  hw.questions.forEach(q => {
-    const el = document.getElementById('ans-'+q.id);
-    if (el) {
-      answers[q.id] = el.value.trim();
-      if (!answers[q.id]) allAnswered = false;
-    }
-  });
-
-  if (!allAnswered) {
-    if (!confirm('Some questions are unanswered. Submit anyway?')) return;
+  if (existing) {
+    existing.answers = answers;
+    existing.submittedAt = new Date().toISOString();
+    existing.submitted = true;
+  } else {
+    subs.push({
+      id: 'sub_' + Date.now(),
+      hwId: submittingHwId,
+      learnerId: currentUser.id,
+      answers,
+      submittedAt: new Date().toISOString(),
+      submitted: true,
+      marked: false,
+      marks: {}
+    });
   }
 
-  const subs = db('submissions');
-  subs.push({
-    id: 'sub' + Date.now(),
-    homeworkId: _currentHwId,
-    learnerId: currentUser.id,
-    answers,
-    submittedAt: Date.now(),
-    marks: {},
-    marked: false,
-    feedback: ''
-  });
   db('submissions', subs);
-  toast('Answers submitted! Good work 🎉', 'success');
-  showPage('page-l-dashboard');
+  toast('✅ Homework submitted!', 'success');
   renderLearnerDashboard();
+  showPage('page-l-dashboard');
 }
 
 /* ════════════════════════════════════════════════════════
-   LEARNER MARKS
+   LEARNER: VIEW MARKS
 ════════════════════════════════════════════════════════ */
 function renderLearnerMarks() {
-  const mySubs = db('submissions').filter(s=>s.learnerId===currentUser.id && s.marked);
   const hw = db('homework');
+  const subs = db('submissions').filter(s => s.learnerId === currentUser.id && s.marked);
 
-  if (!mySubs.length) {
-    document.getElementById('l-marks-content').innerHTML = emptyState('No marks yet','Your teacher has not marked any of your submissions yet.');
-    return;
-  }
-
-  let html = '';
-  mySubs.forEach(sub => {
-    const h = hw.find(x=>x.id===sub.homeworkId);
-    if (!h) return;
-    const subj = SUBJECTS.find(s=>s.id===h.subject)||{};
-    const marks = sub.marks||{};
-    const totalQ = h.questions.length;
-    const correct = Object.values(marks).filter(m=>m==='correct').length;
-    const partial = Object.values(marks).filter(m=>m==='partial').length;
-    const wrong = Object.values(marks).filter(m=>m==='wrong').length;
-    const score = Math.round(((correct + partial*0.5) / totalQ) * 100);
-    const barClass = score >= 70 ? '' : score >= 40 ? 'warn' : 'danger';
-
-    html += `
-      <div class="marks-card">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
-          <div>
-            <div style="font-family:var(--font);font-size:17px;font-weight:800;">${escHtml(h.title)}</div>
-            <div style="font-size:13px;color:var(--text-3);margin-top:3px;">${subj.emoji} ${subj.name}</div>
+  const mc = document.getElementById('l-marks-content');
+  mc.innerHTML = subs.length > 0 ?
+    subs.map(sub => {
+      const h = hw.find(x => x.id === sub.hwId);
+      const correct = Object.values(sub.marks).filter(m => m === 'correct').length;
+      const total = h.questions.length;
+      const pct = Math.round((correct / total) * 100);
+      return `
+        <div class="marks-card">
+          <h3 style="font-family:var(--font);font-weight:800;margin-bottom:8px;">${h.title}</h3>
+          <p style="color:var(--text-3);margin-bottom:12px;">Subject: ${SUBJECTS.find(s => s.id === h.subject)?.name}</p>
+          <div class="score-bar-wrap">
+            <div class="score-bar ${pct < 50 ? 'danger' : pct < 70 ? 'warn' : ''}" style="width:${pct}%"></div>
           </div>
-          <div style="text-align:right;">
-            <div style="font-family:var(--font);font-size:28px;font-weight:800;color:${score>=70?'var(--green)':score>=40?'var(--amber)':'var(--red)'};">${score}%</div>
-            <div style="font-size:12px;color:var(--text-3);">${correct}✅ ${partial}🟡 ${wrong}❌</div>
-          </div>
+          <p style="font-weight:700;color:var(--text);margin:8px 0;">Score: ${correct}/${total} (${pct}%)</p>
+          <div class="divider"></div>
+          ${h.questions.map((q, i) => {
+            const mark = sub.marks[i];
+            const icons = { correct: '✅', partial: '⚠️', wrong: '❌' };
+            return `
+              <div class="answer-review-item">
+                <span class="mark-icon">${icons[mark]}</span>
+                <div>
+                  <strong>Q${i + 1}: ${q}</strong>
+                  <p style="font-size:13px;color:var(--text-3);margin-top:4px;">Your answer: ${sub.answers[i]}</p>
+                </div>
+              </div>
+            `;
+          }).join('')}
         </div>
-        <div class="score-bar-wrap"><div class="score-bar ${barClass}" style="width:${score}%"></div></div>
-        <div class="divider"></div>
-        ${h.questions.map((q,i)=>{
-          const m = marks[q.id];
-          const icon = m==='correct'?'✅':m==='partial'?'🟡':m==='wrong'?'❌':'⬜';
-          return `<div class="answer-review-item">
-            <span class="mark-icon">${icon}</span>
-            <div>
-              <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Q${i+1}: ${escHtml(q.text)}</div>
-              <div style="font-size:13px;color:var(--text-2);font-style:italic;">${escHtml((sub.answers||{})[q.id]||'No answer')}</div>
-            </div>
-          </div>`;
-        }).join('')}
-        ${sub.feedback?`<div style="background:var(--amber-pale);border-radius:8px;padding:12px;margin-top:10px;border-left:3px solid var(--amber);"><strong style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--amber);">Teacher's Feedback</strong><p style="margin-top:4px;font-size:13px;">${escHtml(sub.feedback)}</p></div>`:''}
-      </div>`;
-  });
-
-  document.getElementById('l-marks-content').innerHTML = html;
+      `;
+    }).join('') : '<div class="empty-state"><div class="icon">📭</div><h3>No marked homework yet</h3></div>';
 }
 
 /* ════════════════════════════════════════════════════════
-   LONGHORN BOOKS
+   TEACHER: PROGRESS VIEW
+════════════════════════════════════════════════════════ */
+function renderProgress() {
+  const learners = db('learners');
+  const hw = db('homework');
+  const subs = db('submissions');
+
+  const pc = document.getElementById('t-progress-content');
+  pc.innerHTML = `
+    <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Learner Name</th>
+            <th>Submitted</th>
+            <th>Marked</th>
+            <th>Average Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${learners.map(l => {
+            const lsubs = subs.filter(s => s.learnerId === l.id);
+            const submitted = lsubs.filter(s => s.submitted).length;
+            const marked = lsubs.filter(s => s.marked).length;
+            const avgScore = marked > 0 ? Math.round((lsubs.filter(s => s.marked).reduce((sum, s) => {
+              const correct = Object.values(s.marks).filter(m => m === 'correct').length;
+              return sum + correct;
+            }, 0) / (marked * hw[0]?.questions.length || 1)) * 100) : 0;
+            return `
+              <tr>
+                <td><strong>${l.name}</strong></td>
+                <td>${submitted}/${hw.length}</td>
+                <td>${marked}/${hw.length}</td>
+                <td>${marked > 0 ? avgScore + '%' : '—'}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* ════════════════════════════════════════════════════════
+   TEACHER: MANAGE LEARNERS
+════════════════════════════════════════════════════════ */
+function renderLearnersTable() {
+  const learners = db('learners');
+  const lt = document.getElementById('learners-table');
+  lt.innerHTML = `
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>PIN</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${learners.map((l, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${l.name}</td>
+          <td><code style="background:var(--sand);padding:4px 8px;border-radius:4px;font-family:monospace;">${l.pin}</code></td>
+          <td><button class="btn btn-sm btn-ghost" onclick="alert('Learner ID: ${l.id}')">View</button></td>
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+}
+
+/* ════════════════════════════════════════════════════════
+   RENDER LONGHORN BOOKS
 ════════════════════════════════════════════════════════ */
 function renderLonghornBooks() {
-  const colors = ['#1B5E3B','#1A6FA8','#7B2D8B','#2E7D32','#C17D11','#1565C0','#5D4037','#AD1457'];
-  document.getElementById('longhorn-books-grid').innerHTML = LONGHORN_BOOKS.map((b,i) => `
+  const bg = document.getElementById('longhorn-books-grid');
+  bg.innerHTML = LONGHORN_BOOKS.map(b => `
     <div class="book-card">
-      <div class="book-spine" style="background:${colors[i%colors.length]}20;">${b.emoji}</div>
+      <div class="book-spine" style="background:${b.color};">${b.emoji}</div>
       <div class="book-title">${b.title}</div>
-      <div class="book-sub">${b.grade} &bull; Longhorn</div>
-      <a href="https://longhornpublishers.com/books" target="_blank" class="btn btn-ghost btn-sm btn-full">View Book</a>
-    </div>`).join('');
+      <div class="book-sub">${b.grade}</div>
+      <button class="btn btn-primary btn-sm">📖 Learn More</button>
+    </div>
+  `).join('');
 }
 
 /* ════════════════════════════════════════════════════════
-   UTILS
+   TOAST
 ════════════════════════════════════════════════════════ */
-function escHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
-function emptyState(title, text) {
-  return `<div class="empty-state"><div class="icon">📭</div><h3>${title}</h3><p>${text}</p></div>`;
-}
-
-function toast(msg, type='success') {
-  const c = document.getElementById('toast-container');
+function toast(msg, type = 'success') {
+  const tc = document.getElementById('toast-container');
   const t = document.createElement('div');
   t.className = `toast ${type}`;
-  t.innerHTML = (type==='success'?'✅':type==='error'?'❌':'ℹ️') + ' ' + msg;
-  c.appendChild(t);
-  setTimeout(()=>{ t.style.opacity='0'; t.style.transition='opacity 0.4s'; setTimeout(()=>t.remove(),400); }, 3500);
+  t.textContent = msg;
+  tc.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
 }
 
 /* ════════════════════════════════════════════════════════
    INIT
 ════════════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  initDB();
-  // Enter key on login
-  document.getElementById('teacher-password').addEventListener('keydown', e=>{ if(e.key==='Enter') teacherLogin(); });
-  document.getElementById('learner-pin').addEventListener('keydown', e=>{ if(e.key==='Enter') learnerLogin(); });
-  // Add first question on load
-  addQuestion();
-});
+document.addEventListener('DOMContentLoaded', initDB);
 </script>
 </body>
 </html>
