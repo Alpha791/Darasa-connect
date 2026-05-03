@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Working Submission - Darasa Connect</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- MathJax for LaTeX support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Darasa Connect - Show Your Working</h1>
+            <p>Submit your step-by-step solution with working and supporting images</p>
+        </header>
+
+        <main class="content-wrapper">
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2>Submit Your Solution</h2>
+                <form id="workingForm" class="working-form">
+                    <!-- Question Details -->
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="question">Question *</label>
+                        <textarea id="question" name="question" placeholder="Enter the question here..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="finalAnswer">Final Answer *</label>
+                        <input type="text" id="finalAnswer" name="finalAnswer" placeholder="Enter your final answer" required>
+                    </div>
+
+                    <!-- Working Steps -->
+                    <div class="form-group">
+                        <label>Show Your Working *</label>
+                        <div id="stepsContainer" class="steps-container">
+                            <!-- Steps will be dynamically added here -->
+                        </div>
+                        <button type="button" id="addStepBtn" class="btn btn-secondary">+ Add Step</button>
+                    </div>
+
+                    <!-- Image Uploads -->
+                    <div class="form-group">
+                        <label for="workingImages">Upload Supporting Images (Optional)</label>
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <input type="file" id="workingImages" name="workingImages" accept="image/*" multiple>
+                            <div class="upload-prompt">
+                                <p>📷 Click to upload or drag and drop</p>
+                                <p class="small">PNG, JPG, GIF up to 10MB each</p>
+                            </div>
+                        </div>
+                        <div id="imagePreviewContainer" class="image-preview-container"></div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Add any additional notes or explanations..."></textarea>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Working</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <h2>Preview Your Submission</h2>
+                <div id="previewContainer" class="preview-container">
+                    <p class="placeholder">Fill out the form to see a preview of your submission</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Submissions History -->
+        <section class="submissions-section">
+            <h2>📋 Your Submissions</h2>
+            <div id="submissionsContainer" class="submissions-container">
+                <p class="placeholder">No submissions yet. Submit your working to see it here!</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="working-submission.js"></script>
+</body>
+</html>
